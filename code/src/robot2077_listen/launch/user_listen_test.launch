@@ -1,6 +1,5 @@
 <launch>
 
-    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
     <node pkg="joy" name="joy" type="joy_node"/>
     <node pkg="robot2077_listen" name="keyboard" type="keyboard_listen.py"/>
     <node pkg="robot2077_basic" name="robot_move" type="robot_move"/>
