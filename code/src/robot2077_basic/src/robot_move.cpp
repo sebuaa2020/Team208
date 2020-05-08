@@ -31,9 +31,9 @@ int main(int argc, char **argv) {
     vel_zero.angular.y = 0;
     vel_zero.angular.z = 0;
     
-    vel_pub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1000);
+    vel_pub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
 
-    ros::Subscriber sub = n.subscribe("/robot2077/robot_move/vel", 1000, move_listen);
+    ros::Subscriber sub = n.subscribe("/robot2077/robot_move/vel", 10, move_listen);
     ros::spin();
     return 0;
 }
