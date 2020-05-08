@@ -30,14 +30,14 @@ void keyboardListen(const std_msgs::String::ConstPtr &msg) {
     case 'a':
     case 'A':
         vel.x = 0;
-        vel.y = 1;
-        vel.z = 0;
+        vel.y = 0;
+        vel.z = 1;
         break;
     case 'd':
     case 'D':
         vel.x = 0;
-        vel.y = -1;
-        vel.z = 0;
+        vel.y = 0;
+        vel.z = -1;
         break;
     case 'w':
     case 'W':
@@ -47,19 +47,37 @@ void keyboardListen(const std_msgs::String::ConstPtr &msg) {
         break;
     case 's':
     case 'S':
-        vel.x = -1;
+        vel.x = 0;
         vel.y = 0;
         vel.z = 0;
         break;
     case 'q':
     case 'Q':
-        vel.x = 0;
+        vel.x = 1;
         vel.y = 0;
         vel.z = 1;
         break;
     case 'e':
     case 'E':
-        vel.x = 0;
+        vel.x = 1;
+        vel.y = 0;
+        vel.z = -1;
+        break;
+    case 'x':
+    case 'X':
+        vel.x = -1;
+        vel.y = 0;
+        vel.z = 0;
+        break;
+    case 'z':
+    case 'Z':
+        vel.x = -1;
+        vel.y = 0;
+        vel.z = 1;
+        break;
+    case 'c':
+    case 'C':
+        vel.x = -1;
         vel.y = 0;
         vel.z = -1;
         break;
