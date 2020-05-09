@@ -7,12 +7,7 @@ project(robot2077_basic)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  geometry_msgs
-  roscpp
-  rospy
-)
+find_package(catkin REQUIRED COMPONENTS message_generation geometry_msgs roscpp rospy sensor_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -53,11 +48,9 @@ add_message_files(FILES
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(FILES
+  IsAvoidance.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -212,5 +205,13 @@ add_executable(robot_move
 )
 add_dependencies(robot_move ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_move
+  ${catkin_LIBRARIES}
+)
+
+add_executable(robot_avoidance
+  src/robot_avoidance.cpp
+)
+add_dependencies(robot_avoidance ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(robot_avoidance
   ${catkin_LIBRARIES}
 )
