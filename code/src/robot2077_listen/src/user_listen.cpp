@@ -13,11 +13,18 @@ void joyListen(const sensor_msgs::Joy::ConstPtr& msg) {
     ROS_INFO("RIGHT STICK %.6f, %.6f", msg->axes[3], msg->axes[4]);
     ROS_INFO("LT %.6f, LB %d", msg->axes[2], msg->buttons[4]);
     ROS_INFO("RT %.6f, RB %d", msg->axes[5], msg->buttons[5]);
-    
+    ROS_INFO("A %d", msg->buttons[0]);
+
     robot2077_basic::Movemsg vel;
-    vel.x = msg->axes[1];
-    vel.y = msg->axes[0]; 
-    vel.z = msg->axes[3];
+    if (msg->buttons[0]) {
+        vel.x = 0;
+        vel.y = 0;
+        vel.z = 0;
+    } else {
+        vel.x = msg->axes[1];
+        vel.y = msg->axes[0]; 
+        vel.z = msg->axes[3];
+    }
     vel_pub.publish(vel);
 }
 
