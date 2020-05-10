@@ -7,23 +7,13 @@
 
 ## amcl示例运行方法
 
-首先运行gazebo仿真场景
+运行：
 
-	roslaunch robot_sim_demo robot_spawn.launch
+```sh
+$ roslaunch robot2077_navigation robot_navigation.launch 
+```
 
-启动键盘控制程序
 
-	rosrun robot_sim_demo robot_keyboard_teleop.py
-
-再运行定位程序AMCL
-
-	roslaunch navigation_sim_demo amcl_demo.launch
-
-最后，启动rviz可视化工具
-
-	roslaunch navigation_sim_demo view_navigation.launch
-
-然后用键盘控制小车运动，就能在rviz上看到机器人定位的过程
 
 ## odometry navigation示例运行方法
 

@@ -5,7 +5,7 @@
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
 
-  <!-- Start Gazebo with a blank world -->
+  <!--加载世界-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <!--arg name="world_name" value="$(find robot_sim_demo)/worlds/ROS-Academy.world"/-->
     <arg name="world_name" value="$(find robot_sim_demo)/worlds/playground.world"/>
@@ -16,9 +16,9 @@
     <arg name="headless" value="$(arg headless)"/>
   </include>
 
-  <!-- Oh, you wanted a robot? -->
+  <!--将机器人加载到gazebo中去-->
   <include file="$(find robot_sim_demo)/launch/include/$(arg robot).launch.xml" />
-
-  <!--node    name="rviz"    pkg="rviz"    type="rviz"    args="-d $(find robot_sim_demo)/urdf_gazebo.rviz" /-->
+  <!--启动rviz可视化工具-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot2077_slam)/rviz/slam.rviz"/>
   
 </launch>

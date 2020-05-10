@@ -30,7 +30,9 @@
 
     <remap from="odom" to="$(arg odom_topic)"/>
     <remap from="scan" to="$(arg laser_topic)"/>
-    <remap from="cmd_vel" to="/cmd_vel_mux/input/navi"/>
+    <!--remap from="cmd_vel" to="/cmd_vel_mux/input/navi"/-->
+    <!--改变使得与我们自定义的运动模块衔接-->
+    <remap from="cmd_vel" to="/robot2077/robot_navi/vel"/>
 
   </node>
 </launch>
