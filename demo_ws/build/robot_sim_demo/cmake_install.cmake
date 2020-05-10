@@ -1,8 +1,8 @@
-# Install script for directory: /home/fjh/demo_ws/src/robot_sim_demo
+# Install script for directory: /home/fjh/Team208/demo_ws/src/robot_sim_demo
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/fjh/demo_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/fjh/Team208/demo_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/fjh/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demo.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/fjh/Team208/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demo.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_sim_demo/cmake" TYPE FILE FILES
-    "/home/fjh/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demoConfig.cmake"
-    "/home/fjh/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demoConfig-version.cmake"
+    "/home/fjh/Team208/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demoConfig.cmake"
+    "/home/fjh/Team208/demo_ws/build/robot_sim_demo/catkin_generated/installspace/robot_sim_demoConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_sim_demo" TYPE FILE FILES "/home/fjh/demo_ws/src/robot_sim_demo/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_sim_demo" TYPE FILE FILES "/home/fjh/Team208/demo_ws/src/robot_sim_demo/package.xml")
 endif()
 

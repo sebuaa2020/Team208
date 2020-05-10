@@ -1,8 +1,0 @@
-prefix=/home/fjh/demo_ws/devel
-
-Name: map_build
-Description: Description of map_build
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: urdf xacro

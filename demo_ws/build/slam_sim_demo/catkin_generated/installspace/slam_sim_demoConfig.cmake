@@ -67,14 +67,14 @@ set(slam_sim_demo_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(slam_sim_demo_SOURCE_PREFIX /home/fjh/demo_ws/src/slam_sim_demo)
-  set(slam_sim_demo_DEVEL_PREFIX /home/fjh/demo_ws/devel)
+  set(slam_sim_demo_SOURCE_PREFIX /home/fjh/Team208/demo_ws/src/slam_sim_demo)
+  set(slam_sim_demo_DEVEL_PREFIX /home/fjh/Team208/demo_ws/devel)
   set(slam_sim_demo_INSTALL_PREFIX "")
   set(slam_sim_demo_PREFIX ${slam_sim_demo_DEVEL_PREFIX})
 else()
   set(slam_sim_demo_SOURCE_PREFIX "")
   set(slam_sim_demo_DEVEL_PREFIX "")
-  set(slam_sim_demo_INSTALL_PREFIX /home/fjh/demo_ws/install)
+  set(slam_sim_demo_INSTALL_PREFIX /home/fjh/Team208/demo_ws/install)
   set(slam_sim_demo_PREFIX ${slam_sim_demo_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/fjh/demo_ws/install/lib;/home/fjh/demo_ws/devel/lib;/home/fjh/ros_demo/devel/lib;/home/fjh/catkin_ws/devel/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/fjh/Team208/demo_ws/install/lib;/home/fjh/ros_demo/devel/lib;/home/fjh/catkin_ws/devel/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

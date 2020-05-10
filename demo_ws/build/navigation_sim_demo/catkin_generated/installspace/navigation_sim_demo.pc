@@ -1,4 +1,4 @@
-prefix=/home/fjh/demo_ws/install
+prefix=/home/fjh/Team208/demo_ws/install
 
 Name: navigation_sim_demo
 Description: Description of navigation_sim_demo

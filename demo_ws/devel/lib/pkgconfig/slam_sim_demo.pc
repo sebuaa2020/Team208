@@ -1,4 +1,4 @@
-prefix=/home/fjh/demo_ws/devel
+prefix=/home/fjh/Team208/demo_ws/devel
 
 Name: slam_sim_demo
 Description: Description of slam_sim_demo

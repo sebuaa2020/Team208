@@ -1,2 +1,2 @@
 navigation_sim_demo:robot_sim_demo:slam_sim_demo:vel_pkg
--DCATKIN_DEVEL_PREFIX=/home/fjh/demo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/fjh/demo_ws/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/home/fjh/Team208/demo_ws/devel -DCMAKE_INSTALL_PREFIX=/home/fjh/Team208/demo_ws/install -G Unix Makefiles
