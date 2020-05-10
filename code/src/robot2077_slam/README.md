@@ -55,7 +55,7 @@ $ rosrun map_server map_saver -f map
 2. 启动键盘控制节点：
 
    ```sh
-   $ rosrun robot2077_slam robot_keyboard_teleop.py
+   $ roslaunch robot2077_listen user_keyboard_listen.launch
    ```
 
 3. 保存地图
