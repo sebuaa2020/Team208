@@ -1,0 +1,29 @@
+<!--整合机器人slam建图需要的节点的所有的launch-->
+<launch>
+
+  <arg name="robot" default="xbot-u"/>
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+
+  <!--启动gazebo中的word-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!--这是一个复杂的博物馆word-->
+    <!--
+    <arg name="world_name" value="$(find robot_sim_demo)/worlds/ROS-Academy.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="headless" value="$(arg headless)"/-->
+  </include>
+
+  <!--将机器人加载到gazebo中去-->
+  <include file="$(find robot_sim_demo)/launch/include/$(arg robot).launch.xml" />
+  <!--启动rviz可视化工具-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot2077_slam)/rviz/slam.rviz"/>
+  <!--启动建图程序gmapping-->
+  <include file="$(find robot2077_slam)/launch/include/robot_gmapping.launch.xml"/>
+  <!-- Move base -->
+  <include file="$(find robot2077_navigation)/launch/include/move_base.launch.xml"/>
+</launch>
