@@ -40,6 +40,8 @@ int getTheta(float x, float y) {
 int getIndex(float theta) {
     int ret =  (int)((theta - range_angle_min) / range_angle_inc);
     printf("%.3f, %d, %.3f, %.3f\n", theta, ret, range_angle_min, range_angle_inc);
+    if (ret < 0) ret = 0;
+    if (ret >= range_size) ret = range_size - 1;
     return ret;
 }
 
@@ -49,7 +51,7 @@ bool checkAvoidance(robot2077_basic::IsAvoidance::Request &req, robot2077_basic:
         return true;
     }
     float front = getTheta(req.x, req.y);
-    if (front <= -90 || front >= 90) {
+    if (front < -90 || front > 90) {
         res.isavoidance = true;
         return true;
     }
