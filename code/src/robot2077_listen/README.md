@@ -13,19 +13,19 @@
 
 在一个终端控制台中输入如下指令，可以开启`用户监听`功能
 
-```
-roslaunch robot2077_listen user_listen_test.launch
+```sh
+$ roslaunch robot2077_listen user_listen_test.launch
 ```
 
 此时只能监听用户`手柄`输入，如需监听用户`键盘`输入，则需在另一个终端中，输入
 
-```
-rosrun robot2077_listen keyboard_listen.py
+```sh
+$ rosrun robot2077_listen keyboard_listen.py
 ```
 
 此时在该终端中输入，则可以进行`键盘`控制，具体控制方法如下：
 
-```
+```txt
 Control The Robot!
 ---------------------------
 Moving around:
