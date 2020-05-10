@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(slam_sim_demo)
+project(robot2077_navigation)
 find_package(catkin REQUIRED COMPONENTS
 	roscpp
 	rospy
@@ -7,10 +7,11 @@ find_package(catkin REQUIRED COMPONENTS
 	message_generation
 	controller_manager
 	gazebo_ros
-	slam_karto
-	gmapping
+	move_base
+	map_server
 	amcl
-	hector_mapping
+	gmapping
+	dwa_local_planner
 )
 
 catkin_package(

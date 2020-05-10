@@ -3,7 +3,7 @@
 
   <node name="cartographer_node" pkg="cartographer_ros"
         type="cartographer_node" args="
-          -configuration_directory  $(find slam_sim_demo)/param
+          -configuration_directory  $(find robot2077_slam)/param
           -configuration_basename cartographer_params.lua"
       output="screen">
     <remap from="scan" to="/scan" />
@@ -18,7 +18,7 @@
 
 
   <node name="rviz" pkg="rviz" type="rviz" required="true"
-      args="-d $(find slam_sim_demo)/rviz/cartographer.rviz" />
+      args="-d $(find robot2077_slam)/rviz/cartographer.rviz" />
 
 
 

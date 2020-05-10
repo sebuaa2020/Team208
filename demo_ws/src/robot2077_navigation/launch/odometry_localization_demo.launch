@@ -2,12 +2,12 @@
 
 <launch>
   <!-- Map server -->
-  <arg name="map_file" default="$(find slam_sim_demo)/maps/Software_Museum.yaml"/>
+  <arg name="map_file" default="$(find robot2077_slam)/maps/Software_Museum.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
 <node pkg="tf" type="static_transform_publisher" name="odom_map_broadcaster" 
       args="0 0 0 0 0 0 map odom 20" />
 
   <!-- Move base -->
- <include file="$(find navigation_sim_demo)/launch/include/move_base.launch.xml"/>
+ <include file="$(find robot2077_navigation)/launch/include/move_base.launch.xml"/>
 </launch>
