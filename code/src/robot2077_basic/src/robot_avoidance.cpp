@@ -2,7 +2,7 @@
 #include "sensor_msgs/LaserScan.h"
 #include "robot2077_basic/IsAvoidance.h"
 
-float AVOIDANCE_DIS = 0;
+float AVOIDANCE_DIS = 1;
 float range_cache[1000];
 int range_size;
 float range_angle_min, range_angle_max, range_angle_inc;
@@ -13,7 +13,7 @@ void laserListen(const sensor_msgs::LaserScan::ConstPtr &scan) {
     range_angle_max = scan->angle_max / M_PI * 180;
     range_angle_inc = scan->angle_increment / M_PI * 180;
     for (int i = 0; i < range_size; i++) range_cache[i] = scan->ranges[i];
-    // ROS_INFO("Update the range_cache: %d, front dis: %.3f", range_size, range_cache[range_size/2]);
+    ROS_INFO("Update the range_cache: %d, front dis: %.3f", range_size, range_cache[range_size/2]);
 }
 
 int getTheta(float x, float y) {
@@ -38,10 +38,16 @@ int getTheta(float x, float y) {
 }
 
 int getIndex(float theta) {
-    return (int)((theta - range_angle_min) / range_angle_inc);
+    int ret =  (int)((theta - range_angle_min) / range_angle_inc);
+    printf("%.3f, %d, %.3f, %.3f\n", theta, ret, range_angle_min, range_angle_inc);
+    return ret;
 }
 
 bool checkAvoidance(robot2077_basic::IsAvoidance::Request &req, robot2077_basic::IsAvoidance::Response &res) {
+    if (range_size <= 0) {
+        res.isavoidance = true;
+        return true;
+    }
     float front = getTheta(req.x, req.y);
     if (front <= -90 || front >= 90) {
         res.isavoidance = true;
