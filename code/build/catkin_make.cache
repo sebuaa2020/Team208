@@ -1,2 +1,0 @@
-robot2077_navigation:robot2077_slam:robot_sim_demo:vel_pkg
--DCATKIN_DEVEL_PREFIX=/home/fjh/Team208/code/devel -DCMAKE_INSTALL_PREFIX=/home/fjh/Team208/code/install -G Unix Makefiles

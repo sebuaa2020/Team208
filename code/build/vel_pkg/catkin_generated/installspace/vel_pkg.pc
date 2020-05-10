@@ -1,8 +1,0 @@
-prefix=/home/fjh/Team208/code/install
-
-Name: vel_pkg
-Description: Description of vel_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

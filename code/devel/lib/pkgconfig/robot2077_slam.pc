@@ -1,8 +1,0 @@
-prefix=/home/fjh/Team208/code/devel
-
-Name: robot2077_slam
-Description: Description of robot2077_slam
-Version: 0.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: urdf xacro
