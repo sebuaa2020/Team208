@@ -1,0 +1,7 @@
+<launch>
+    <!--下面两个include控制是否开启自动避障-->
+    <include file="$(find robot2077_listen)/launch/user_listen.launch"/>
+    <!--include file="$(find robot2077_listen)/launch/user_listen_with_avoidance.launch"-->
+    <!--开启手柄监听-->
+    <node pkg="joy" name="joy" type="joy_node"/>
+</launch>

@@ -11,16 +11,16 @@
 
 在使用前需确保`robot2077_basic`和`robot2077_listen`软件包编译成功
 
-在一个终端控制台中输入如下指令，可以开启`用户监听`功能
+1. 手柄监听：
 
 ```sh
-$ roslaunch robot2077_listen user_listen_test.launch
+$ roslaunch robot2077_listen user_joy_listen.launch
 ```
 
-此时只能监听用户`手柄`输入，如需监听用户`键盘`输入，则需在另一个终端中，输入
+2. 键盘监听
 
 ```sh
-$ rosrun robot2077_listen keyboard_listen.py
+$ roslaunch robot2077_listen user_keyboard_listen.launch
 ```
 
 此时在该终端中输入，则可以进行`键盘`控制，具体控制方法如下：
@@ -46,3 +46,5 @@ anything else : force stop
 
 CTRL-C to quit
 ```
+
+3. 在`user_joy_listen.launch`和`user_keyboard_listen.launch`中选择启动`user_listen.launch`或者`user_listen_with_avoidance.launch`可以控制关闭或开启主动避障功能

@@ -24,6 +24,4 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot2077_slam)/rviz/slam.rviz"/>
   <!--启动建图程序gmapping-->
   <include file="$(find robot2077_slam)/launch/include/robot_gmapping.launch.xml"/>
-  <!-- Move base -->
-  <include file="$(find robot2077_navigation)/launch/include/move_base.launch.xml"/>
 </launch>
