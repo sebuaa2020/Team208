@@ -47,4 +47,18 @@ anything else : force stop
 CTRL-C to quit
 ```
 
-3. 在`user_joy_listen.launch`和`user_keyboard_listen.launch`中选择启动`user_listen.launch`或者`user_listen_with_avoidance.launch`可以控制关闭或开启主动避障功能
+3. 如需使用避障功能，可以使用如下指令，分别启用手柄监听或键盘监听
+
+   - 手柄监听：
+
+   ```sh
+   $ roslaunch robot2077_listen user_joy_listen_with_avoidance.launch
+   ```
+
+   - 键盘监听
+
+   ```sh
+   $ roslaunch robot2077_listen user_keyboard_listen_with_avoidance.launch
+   ```
+
+   
