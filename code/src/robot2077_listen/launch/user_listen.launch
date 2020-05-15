@@ -1,6 +1,0 @@
-<launch>
-
-    <node pkg="robot2077_basic" name="robot_move" type="robot_move"/>
-    <node pkg="robot2077_listen" name="user_listen" type="user_listen"/>
-
-</launch>
