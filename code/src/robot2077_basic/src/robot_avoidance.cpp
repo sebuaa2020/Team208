@@ -1,8 +1,10 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "robot2077_basic/IsAvoidance.h"
+#include "cmath"
 
-float AVOIDANCE_DIS = 1;
+float AVOIDANCE_DIS_MAX = 1.0;
+float AVOIDANCE_DIS_MIN = 0.4;
 float range_cache[1000];
 int range_size;
 float range_angle_min, range_angle_max, range_angle_inc;
@@ -13,7 +15,7 @@ void laserListen(const sensor_msgs::LaserScan::ConstPtr &scan) {
     range_angle_max = scan->angle_max / M_PI * 180;
     range_angle_inc = scan->angle_increment / M_PI * 180;
     for (int i = 0; i < range_size; i++) range_cache[i] = scan->ranges[i];
-    ROS_INFO("Update the range_cache: %d, front dis: %.3f", range_size, range_cache[range_size/2]);
+    // ROS_INFO("Update the range_cache: %d, front dis: %.3f", range_size, range_cache[range_size/2]);
 }
 
 int getTheta(float x, float y) {
@@ -39,32 +41,41 @@ int getTheta(float x, float y) {
 
 int getIndex(float theta) {
     int ret =  (int)((theta - range_angle_min) / range_angle_inc);
-    printf("%.3f, %d, %.3f, %.3f\n", theta, ret, range_angle_min, range_angle_inc);
+    // printf("%.3f, %d, %.3f, %.3f\n", theta, ret, range_angle_min, range_angle_inc);
     if (ret < 0) ret = 0;
     if (ret >= range_size) ret = range_size - 1;
     return ret;
 }
 
+float getK(float dis) {
+    if (dis >= AVOIDANCE_DIS_MAX) return 1.0;
+    else if (dis <= AVOIDANCE_DIS_MIN) return 0.0;
+    else return (dis - AVOIDANCE_DIS_MIN) / (AVOIDANCE_DIS_MAX - AVOIDANCE_DIS_MIN);
+}
+
 bool checkAvoidance(robot2077_basic::IsAvoidance::Request &req, robot2077_basic::IsAvoidance::Response &res) {
     if (range_size <= 0) {
-        res.isavoidance = true;
+        res.k = 0;
         return true;
     }
     float front = getTheta(req.x, req.y);
     if (front < -90 || front > 90) {
-        res.isavoidance = true;
+        res.k = 0;
         return true;
     }
     float leftFront = front + 45; 
     float rightFront = front - 45; 
 
-    ROS_INFO("Theta: %.3f, LeftFront: %.3f, Front: %.3f, RightFront: %.3f", 
-        front, range_cache[getIndex(leftFront)], range_cache[getIndex(front)], range_cache[getIndex(rightFront)]);
-    if (range_cache[getIndex(front)] > AVOIDANCE_DIS &&
-        range_cache[getIndex(leftFront)] > AVOIDANCE_DIS &&
-        range_cache[getIndex(rightFront)] > AVOIDANCE_DIS
-    ) res.isavoidance = false;
-    else res.isavoidance = true;
+    
+    float ret_k = 1.0, count = 0.0;
+    for (int i = getIndex(rightFront); i <= getIndex(leftFront); i += 27) {
+        ret_k *= getK(range_cache[i]);
+        count += 1;
+    }
+    ROS_INFO("%.3f, %.3f", ret_k, 1/count);
+    ret_k = pow(ret_k, 1/count);
+    ROS_INFO("%.3f", ret_k);
+    res.k = ret_k;
     return true;
 }
 

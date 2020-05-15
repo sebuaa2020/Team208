@@ -22,7 +22,7 @@ void joyListen(const sensor_msgs::Joy::ConstPtr& msg) {
         vel.z = 0;
     } else {
         vel.x = msg->axes[1];
-        vel.y = msg->axes[0]; 
+        vel.y = 0; //msg->axes[0]; 
         vel.z = msg->axes[3];
     }
     vel_pub.publish(vel);

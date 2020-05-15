@@ -1,4 +1,4 @@
 float32 x
 float32 y
 ---
-bool isavoidance
+float32 k
