@@ -1,0 +1,14 @@
+<!--整合机器人导航需要的节点的所有的launch-->
+<launch>
+  <!--启动基本世界-->
+  <include file="$(find xbot_sim)/launch/robot_spawn.launch" />
+  <!--启动向我们自定义运动模块的转化节点-->
+  <node name="navi_move_trans" pkg="xbot_navigation" type="navi_move_trans"/>
+  <!--启动自定义运动模块-->
+  <node pkg="xbot_basic" name="robot_move" type="robot_move"/>
+  <!--启动导航功能acml-->
+  <include file="$(find xbot_navigation)/launch/amcl_demo.launch">
+    <!--使用的地图参数-->
+    <arg name="map_file" value="$(find xbot_slam)/maps/sample.yaml"/>>
+  </include>
+</launch>
