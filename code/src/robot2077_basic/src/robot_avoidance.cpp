@@ -3,8 +3,8 @@
 #include "robot2077_basic/IsAvoidance.h"
 #include "cmath"
 
-float AVOIDANCE_DIS_MAX = 1.0;
-float AVOIDANCE_DIS_MIN = 0.4;
+const float AVOIDANCE_DIS_MAX = 1.0;
+const float AVOIDANCE_DIS_MIN = 0.4;
 float range_cache[1000];
 int range_size;
 float range_angle_min, range_angle_max, range_angle_inc;
@@ -15,10 +15,10 @@ void laserListen(const sensor_msgs::LaserScan::ConstPtr &scan) {
     range_angle_max = scan->angle_max / M_PI * 180;
     range_angle_inc = scan->angle_increment / M_PI * 180;
     for (int i = 0; i < range_size; i++) range_cache[i] = scan->ranges[i];
-    // ROS_INFO("Update the range_cache: %d, front dis: %.3f", range_size, range_cache[range_size/2]);
+    // ROS_INFO("Update the range_cache: %d, %.3f, %.3f, %.3f", range_size, range_angle_min, range_angle_max, range_angle_inc);
 }
 
-int getTheta(float x, float y) {
+float getTheta(float x, float y) {
     float eps = 1e-8;
     if(fabs(x) < eps) {
         if (fabs(y) < eps) return 0;
@@ -39,7 +39,14 @@ int getTheta(float x, float y) {
     return theta;
 }
 
+float getTheta(float theta) {
+    while(theta < -180) theta += 360;
+    while(theta > 180) theta -= 360;
+    return theta;
+}
+
 int getIndex(float theta) {
+    theta = getTheta(theta);
     int ret =  (int)((theta - range_angle_min) / range_angle_inc);
     // printf("%.3f, %d, %.3f, %.3f\n", theta, ret, range_angle_min, range_angle_inc);
     if (ret < 0) ret = 0;
@@ -59,22 +66,18 @@ bool checkAvoidance(robot2077_basic::IsAvoidance::Request &req, robot2077_basic:
         return true;
     }
     float front = getTheta(req.x, req.y);
-    if (front < -90 || front > 90) {
-        res.k = 0;
-        return true;
-    }
     float leftFront = front + 45; 
     float rightFront = front - 45; 
 
     
     float ret_k = 1.0, count = 0.0;
-    for (int i = getIndex(rightFront); i <= getIndex(leftFront); i += 27) {
-        ret_k *= getK(range_cache[i]);
+    float step = (leftFront - rightFront) / 10;
+    for (float i = rightFront; i <= leftFront; i += step) {
+        ret_k *= getK(range_cache[getIndex(i)]);
         count += 1;
     }
-    ROS_INFO("%.3f, %.3f", ret_k, 1/count);
     ret_k = pow(ret_k, 1/count);
-    ROS_INFO("%.3f", ret_k);
+    ROS_INFO("%.3f, %.3f, %.3f, %.3f", front, getTheta(leftFront), getTheta(rightFront), ret_k);
     res.k = ret_k;
     return true;
 }

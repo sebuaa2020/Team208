@@ -11,7 +11,7 @@
 
 - #### robot_move
 
-  该功能在话题`/robot2077/robot_move/vel`中接收其他模块对机器人移动的控制指令(`robot2077_basic::Movemsg`类型)，并通过包装后发布给话题`/cmd_vel`。在发布前，会向`robot_avoidance`模块确认是否有障碍物。该模块中有参数`LINEAR_VEL_MAX_X`，`LINEAR_VEL_MAX_Y`，`ANGULAR_VEL_MAX`来控制机器人在各个方向移动速度的最大值（对输入速度进行缩小，输入速度可能大于1）
+  该功能在话题`/robot2077/robot_move/vel`中接收其他模块对机器人移动的控制指令(`robot2077_basic::Movemsg`类型)，并通过包装后发布给话题`/cmd_vel`。在发布前，会向`robot_avoidance`模块确认是否有障碍物。该模块中有参数`LINEAR_VEL_MAX`，`ANGULAR_VEL_MAX`来控制机器人在各个方向移动速度的最大值
 
 - #### robot_avoidance
 
