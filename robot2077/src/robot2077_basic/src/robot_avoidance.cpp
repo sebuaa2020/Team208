@@ -3,8 +3,9 @@
 #include "robot2077_basic/IsAvoidance.h"
 #include "cmath"
 
-const float AVOIDANCE_DIS_MAX = 1.0;
-const float AVOIDANCE_DIS_MIN = 0.4;
+float AVOIDANCE_DIS_MAX = 1.0;
+float AVOIDANCE_DIS_MIN = 0.4;
+
 float range_cache[1000];
 int range_size;
 float range_angle_min, range_angle_max, range_angle_inc;
@@ -85,6 +86,9 @@ bool checkAvoidance(robot2077_basic::IsAvoidance::Request &req, robot2077_basic:
 int main(int argc, char **argv) {
     ros::init(argc, argv, "robot_avoidance");
     ros::NodeHandle n;
+    n.getParam("avoidance_dis_max", AVOIDANCE_DIS_MAX);
+    n.getParam("avoidance_dis_min", AVOIDANCE_DIS_MIN);
+    ROS_INFO("Loading param: avoidance_dis_max: %.2f, avoidance_dis_min: %.2f", AVOIDANCE_DIS_MAX, AVOIDANCE_DIS_MIN);
 
     ros::ServiceServer avoidanceServer = n.advertiseService("/robot2077/robot_move/is_avoidance", checkAvoidance);
     ROS_INFO("Robot Avoidance Server Start!");
