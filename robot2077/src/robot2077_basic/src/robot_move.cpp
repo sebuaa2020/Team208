@@ -4,8 +4,8 @@
 #include "robot2077_basic/IsAvoidance.h"
 #include <iostream>
 
-const float LINEAR_VEL_MAX = 0.8;
-const float ANGULAR_VEL_MAX = 0.7;
+float LINEAR_VEL_MAX = 0.8;
+float ANGULAR_VEL_MAX = 0.7;
 
 ros::Publisher vel_pub;
 geometry_msgs::Twist vel_temp;
@@ -27,6 +27,10 @@ int main(int argc, char **argv) {
     ros::init(argc, argv, "robot_move");
     ros::NodeHandle n;
     
+    n.getParam("linear_vel_max", LINEAR_VEL_MAX);
+    n.getParam("angular_vel_max", ANGULAR_VEL_MAX);
+    ROS_INFO("Loading params, linear_vel_max: %.2f, angular_vel_max: %.2f", LINEAR_VEL_MAX, ANGULAR_VEL_MAX);
+
     vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
     checkAvoidance = n.serviceClient<robot2077_basic::IsAvoidance>("/robot2077/robot_move/is_avoidance");
 
