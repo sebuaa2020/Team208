@@ -12,14 +12,21 @@ geometry_msgs::Twist vel_temp;
 
 ros::ServiceClient checkAvoidance;
 
+float check_vel(float vel, float vel_max) {
+	vel_max = fabs(vel_max);
+	if (vel < -vel_max) vel = -vel_max;
+	if (vel > vel_max) vel = vel_max;
+	return vel;
+}
+
 void move_listen(const robot2077_basic::Movemsg::ConstPtr& msg) {
     ROS_INFO("x: %.6f, y: %.6f, z: %.6f", msg->x, msg->y, msg->z);
-    vel_temp.linear.x = std::min(msg->x, LINEAR_VEL_MAX);
-    vel_temp.linear.y = std::min(msg->y, LINEAR_VEL_MAX);
+    vel_temp.linear.x = check_vel(msg->x, LINEAR_VEL_MAX);
+    vel_temp.linear.y = check_vel(msg->y, LINEAR_VEL_MAX);
     vel_temp.linear.z = 0;
     vel_temp.angular.x = 0;
     vel_temp.angular.y = 0;
-    vel_temp.angular.z = std::min(msg->z, ANGULAR_VEL_MAX);
+    vel_temp.angular.z = check_vel(msg->z, ANGULAR_VEL_MAX);
 }
 
 int main(int argc, char **argv) {
