@@ -1,0 +1,11 @@
+<launch>
+
+    <rosparam file="$(find robot2077_basic)/config/robot_avoidance.yaml" command="load" />
+    <rosparam file="$(find robot2077_basic)/config/robot_move.yaml" command="load" />
+    <node pkg="robot2077_basic" name="robot_avoidance" type="robot_avoidance">
+
+    </node>
+    <node pkg="robot2077_basic" name="robot_move" type="robot_move">
+        
+    </node>
+</launch>
