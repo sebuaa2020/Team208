@@ -50,6 +50,7 @@ bool QNode::init() {
 	// Add your ros communications here.
   movemsg_subscriber = n.subscribe("/cmd_vel", 10, &QNode::movemsg_sub_callback, this);
   movemsg_publisher = n.advertise<robot2077_basic::Movemsg>("/robot2077/robot_move/vel", 10);
+  joy_subscriber = n.subscribe("/joy", 10, &QNode::joy_sub_callback, this);
 	start();
 	return true;
 }
@@ -71,19 +72,9 @@ bool QNode::init() {
 }*/
 
 void QNode::run() {
-  ros::Rate loop_rate(1);
-	int count = 0;
-  while ( ros::ok() ) {
 
-    /*std_msgs::String msg;
-		std::stringstream ss;
-		ss << "hello world " << count;
-		msg.data = ss.str();
-    chatter_publisher.publish(msg);*/
-		ros::spinOnce();
-		loop_rate.sleep();
-    ++count;
-  }
+
+  ros::spin();
   std::cout << "Ros shutdown, proceeding to close the gui." << std::endl;
   Q_EMIT rosShutdown(); // used to signal the gui for a shutdown (useful to roslaunch)
 }
@@ -107,6 +98,29 @@ void QNode::movemsg_send(float x, float y, float z) {
   vel.z = z;
   movemsg_publisher.publish(vel);
   ROS_INFO_STREAM("send!");
+}
+
+void QNode::joy_sub_callback(const sensor_msgs::JoyConstPtr &msg)
+{
+  std::cout << "------------------------------" << std::endl;
+  ROS_INFO("LEFT STICK %.6f, %.6f", msg->axes[0], msg->axes[1]);
+  ROS_INFO("RIGHT STICK %.6f, %.6f", msg->axes[3], msg->axes[4]);
+  ROS_INFO("LT %.6f, LB %d", msg->axes[2], msg->buttons[4]);
+  ROS_INFO("RT %.6f, RB %d", msg->axes[5], msg->buttons[5]);
+  ROS_INFO("A %d", msg->buttons[0]);
+
+  robot2077_basic::Movemsg vel;
+  if (msg->buttons[0]) {
+      vel.x = 0;
+      vel.y = 0;
+      vel.z = 0;
+  } else {
+      vel.x = msg->axes[1];
+      vel.y = msg->axes[0];
+      vel.z = msg->axes[3];
+  }
+  movemsg_publisher.publish(vel);
+  Q_EMIT QNode::joymsg(vel.x, vel.y, vel.z);
 }
 
 }  // namespace robot2077_ui

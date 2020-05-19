@@ -25,6 +25,7 @@
 #include <QThread>
 #include <QStringListModel>
 #include "geometry_msgs/Twist.h"
+#include "sensor_msgs/Joy.h"
 #include "robot2077_basic/Movemsg.h"
 
 
@@ -56,6 +57,7 @@ Q_SIGNALS:
     void rosShutdown();
 
     void movemsg_updated(float x, float y, float z);
+    void joymsg(float x, float y, float z);
 
 public Q_SLOTS:
 
@@ -66,6 +68,9 @@ private:
 	char** init_argv;
   ros::Publisher movemsg_publisher;
   ros::Subscriber movemsg_subscriber;
+  ros::Subscriber joy_subscriber;
+
+  void joy_sub_callback(const sensor_msgs::JoyConstPtr& msg);
 };
 
 }  // namespace robot2077_ui
