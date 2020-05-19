@@ -1,3 +1,4 @@
+<!--add byg gld-->
 <launch>
   <node name="obj_detect" pkg="robot2077_objdetect" type="obj_detect" />
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->

@@ -1,6 +1,6 @@
 #include "../include/robot2077_ui/navigation_dialog.h"
 #include "ui_navigation_dialog.h"
-
+// add by xq
 Navigation_Dialog::Navigation_Dialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::Navigation_Dialog)

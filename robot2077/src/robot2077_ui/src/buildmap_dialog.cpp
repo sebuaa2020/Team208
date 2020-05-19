@@ -1,6 +1,6 @@
 #include "../include/robot2077_ui/buildmap_dialog.h"
 #include "ui_buildmap_dialog.h"
-
+// add by xq
 Buildmap_Dialog::Buildmap_Dialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::Buildmap_Dialog)

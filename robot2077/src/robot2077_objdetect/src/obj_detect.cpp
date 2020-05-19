@@ -30,7 +30,7 @@
 #include <math.h>
 #include <iostream>
 
-
+// add by gld
 static tf::TransformListener* tf_listener;
 static std::string point_cloud_topic;
 static ros::Publisher pc_pub;

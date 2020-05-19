@@ -1,6 +1,6 @@
 #include "../include/robot2077_ui/detect_grab_dialog.h"
 #include "ui_detect_grab_dialog.h"
-
+// add by xq
 Detect_Grab_Dialog::Detect_Grab_Dialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::Detect_Grab_Dialog)

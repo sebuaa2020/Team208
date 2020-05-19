@@ -1,6 +1,6 @@
 #include "../include/robot2077_ui/usercontrol_dialog.h"
 #include "ui_usercontrol_dialog.h"
-
+// add by xq
 UserControl_Dialog::UserControl_Dialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::UserControl_Dialog)
