@@ -54,6 +54,8 @@ public Q_SLOTS:
 
     void on_backward_btn_clicked();
 
+    void on_map_save_clicked();
+
 private:
   Ui::Buildmap_Dialog *ui;
 

@@ -191,3 +191,13 @@ void Buildmap_Dialog::keyPressEvent(QKeyEvent *event)
 
   Q_EMIT movemsg_create(x, y, z);
 }
+
+// func to save map
+void Buildmap_Dialog::on_map_save_clicked()
+{
+   std::string map_name = ui->map_name->text().toStdString();
+   std::string s1="rosrun map_server map_saver -f ~/Team208/robot2077/src/robot2077_slam/maps/" + map_name;
+   std::stringstream ss;
+   ss<<"gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash;"<< s1 << "'";
+   system(ss.str().c_str());
+}
