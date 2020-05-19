@@ -1,3 +1,5 @@
+# add by fjh
+# 全局costmap的配置
 global_costmap:
    global_frame: /map
    robot_base_frame: /base_footprint

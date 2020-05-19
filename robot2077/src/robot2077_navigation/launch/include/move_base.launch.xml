@@ -1,6 +1,8 @@
 <!-- 
     ROS navigation stack with velocity smoother and safety (reactive) controller
 -->
+<!--add by fjh-->
+<!--启动move_base框架，传入对应参数-->
 <launch>
   
   <arg name="odom_frame_id"   default="odom"/>

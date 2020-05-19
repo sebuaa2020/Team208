@@ -1,5 +1,6 @@
 <launch>
-
+    <!--add by yzx-->
+    <!--启动带有避障功能的机器人运动模块-->
     <rosparam file="$(find robot2077_basic)/config/robot_avoidance.yaml" command="load" />
     <rosparam file="$(find robot2077_basic)/config/robot_move.yaml" command="load" />
     <node pkg="robot2077_basic" name="robot_avoidance" type="robot_avoidance">

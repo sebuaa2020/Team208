@@ -35,7 +35,7 @@
  @author     ZhangWanjie
  ********************************************************************/
 
-
+// add by fjh from wpb
 // 该文件在slam建图中对雷达扫描得到数据进行过滤
 #include <ros/ros.h>
 #include <std_msgs/String.h>
@@ -76,6 +76,7 @@ void CWPHLidarFilter::lidarCallback(const sensor_msgs::LaserScan::ConstPtr& scan
     new_scan.range_max = scan->range_max;
     new_scan.ranges.resize(nRanges);
     new_scan.intensities.resize(nRanges);
+    // 去除过近的雷达数据，认为这些数据是不可信的
     for(int i=0 ; i<nRanges ; i++)
     {
         new_scan.ranges[i] = scan->ranges[i];

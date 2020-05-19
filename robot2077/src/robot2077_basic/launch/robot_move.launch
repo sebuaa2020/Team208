@@ -1,5 +1,6 @@
 <launch>
-
+    <!--add by yzx-->
+    <!--启动基础的机器人运动模块-->
     <rosparam file="$(find robot2077_basic)/config/robot_move.yaml" command="load" />
     <node pkg="robot2077_basic" name="robot_move" type="robot_move">
         

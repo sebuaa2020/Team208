@@ -1,4 +1,5 @@
 <!--整合机器人slam建图需要的节点的所有的launch-->
+<!--add by fjh-->
 <launch>
   <!--启动基本世界-->
   <include file="$(find wpb_sim)/launch/wpb_simple.launch" />

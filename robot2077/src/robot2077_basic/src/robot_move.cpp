@@ -3,7 +3,8 @@
 #include "robot2077_basic/Movemsg.h"
 #include "robot2077_basic/IsAvoidance.h"
 #include <iostream>
-
+// add by yzx
+// 该节点控制机器人的运动行为
 float LINEAR_VEL_MAX = 0.8;
 float ANGULAR_VEL_MAX = 0.7;
 

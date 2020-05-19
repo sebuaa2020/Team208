@@ -2,6 +2,8 @@
 #
 #  http://www.ros.org/wiki/move_base
 #
+# add by fjh
+# movebase 框架的基本配置参数
 shutdown_costmaps: false
 
 controller_frequency: 5.0

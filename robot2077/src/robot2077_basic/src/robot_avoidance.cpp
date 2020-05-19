@@ -2,7 +2,8 @@
 #include "sensor_msgs/LaserScan.h"
 #include "robot2077_basic/IsAvoidance.h"
 #include "cmath"
-
+// add by yzx
+// 该节点控制机器人的避障行为
 float AVOIDANCE_DIS_MAX = 1.0;
 float AVOIDANCE_DIS_MIN = 0.4;
 
