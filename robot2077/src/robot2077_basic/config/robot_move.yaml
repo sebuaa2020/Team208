@@ -1,2 +1,4 @@
-linear_vel_max: 1.0
-angular_vel_max: 1.0
+# add by yzx
+# 关于控制机器人运动模块的配置
+linear_vel_max: 1.0   # 最大线速度
+angular_vel_max: 1.0  # 最大角速度

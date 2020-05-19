@@ -38,7 +38,7 @@
 #include "rviz/display.h"
 
 #include "../include/robot2077_ui/myviz.h"
-
+// add by xq
 // BEGIN_TUTORIAL
 // Constructor for MyViz.  This does most of the work of the class.
 MyViz::MyViz( QWidget* parent )

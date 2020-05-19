@@ -1,4 +1,5 @@
 <launch>
+  <!--add by fjh-->
   <!--机器人模型-->
   <arg name="model" default="$(find wpb_sim)/urdf/wpb_home.gazebo"/>
   <arg name="gui" default="true" />

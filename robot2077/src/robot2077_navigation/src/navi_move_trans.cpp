@@ -11,6 +11,7 @@
     float32 z
 */
 // 只有x,y的水平速度和z方向的转动速度
+// add by fjh
 double LINEAR_VEL_MAX = 0.8;
 double ANGULAR_VEL_MAX = 0.7;
 

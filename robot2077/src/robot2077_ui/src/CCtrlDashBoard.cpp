@@ -2,7 +2,7 @@
 #include <QPainter>
 #include <QDebug>
 #include <qmath.h>
-
+// add by xq
 CCtrlDashBoard::CCtrlDashBoard(QWidget *parent, StyleType type) :
     QWidget(parent),
     m_StyleType(type)

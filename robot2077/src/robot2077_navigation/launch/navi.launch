@@ -1,10 +1,11 @@
+<!--add by fjh-->
 <launch>
   <!-- Map server -->
   <arg name="map_file" default="$(find robot2077_slam)/maps/navi.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!-- Localization -->
-  <!-- 初始位置可以从地图的yaml文件中得到-->
+  <!-- 初始位置可以从在建图中创建世界的gazebo文件中得到，保证导航和建图初始位置一致-->
   <arg name="initial_pose_x" default="0.0"/>
   <arg name="initial_pose_y" default="0.0"/>
   <arg name="initial_pose_a" default="0.0"/>

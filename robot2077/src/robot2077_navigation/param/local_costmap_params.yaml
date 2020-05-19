@@ -1,3 +1,5 @@
+# add by fjh
+# 局部contmap配置
 local_costmap:
    global_frame: /map
    robot_base_frame: /base_footprint

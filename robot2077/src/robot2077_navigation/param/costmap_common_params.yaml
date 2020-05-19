@@ -1,3 +1,5 @@
+# add by fjh
+# 是导航中costmap的参数配置文件
 max_obstacle_height: 2.40  # assume something like an arm is mounted on top of the robot
 
 # Obstacle Cost Shaping (http://wiki.ros.org/costmap_2d/hydro/inflation)
