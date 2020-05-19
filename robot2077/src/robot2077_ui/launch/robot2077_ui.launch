@@ -1,0 +1,9 @@
+<launch>
+
+    <node pkg="joy" name="joy" type="joy_node"/>
+    
+    <include file="$(find robot2077_basic)/launch/robot_move.launch" />
+
+    <node pkg="robot2077_ui" name="robot2077_ui" type="robot2077_ui" />
+
+</launch>
