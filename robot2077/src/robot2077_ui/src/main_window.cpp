@@ -143,7 +143,7 @@ void MainWindow::usercontrol_change() {
 void MainWindow::on_buildmap_btn_clicked()
 {
   Buildmap_Dialog* dlg = new Buildmap_Dialog();
-  connect(&qnode, SIGNAL(movemsg_updated(float, float, float)), dlg, SLOT(movemsg_get(float, float, float)));
+  //connect(&qnode, SIGNAL(movemsg_updated(float, float, float)), dlg, SLOT(movemsg_get(float, float, float)));
   connect(dlg, SIGNAL(movemsg_create(float,float,float)), &qnode, SLOT(movemsg_send(float,float,float)));
   connect(&qnode, SIGNAL(joymsg(float,float,float)), dlg, SLOT(movemsg_btn_color(float,float,float)));
   dlg->exec();
