@@ -135,19 +135,19 @@
        </font>
       </property>
       <property name="text">
-       <string>stop</string>
+       <string>停止</string>
       </property>
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QPushButton" name="rightturn_btn">
+     <widget class="QPushButton" name="right_btn">
       <property name="font">
        <font>
         <pointsize>15</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>rightturn</string>
+       <string>右移</string>
       </property>
      </widget>
     </item>
@@ -159,19 +159,19 @@
        </font>
       </property>
       <property name="text">
-       <string>forward</string>
+       <string>前进</string>
       </property>
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QPushButton" name="leftturn_btn">
+     <widget class="QPushButton" name="left_btn">
       <property name="font">
        <font>
         <pointsize>15</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>leftturn</string>
+       <string>左移</string>
       </property>
      </widget>
     </item>
@@ -183,7 +183,31 @@
        </font>
       </property>
       <property name="text">
-       <string>backward</string>
+       <string>后退</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="leftturn_btn">
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>左转</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="rightturn_btn">
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>右转</string>
       </property>
      </widget>
     </item>

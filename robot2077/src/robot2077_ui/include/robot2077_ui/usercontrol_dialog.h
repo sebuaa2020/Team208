@@ -53,7 +53,7 @@ private slots:
 
   void on_rightturn_btn_clicked();
 
-  void on_backword_btn_clicked();
+  void on_backward_btn_clicked();
 
 private:
   Ui::UserControl_Dialog *ui;

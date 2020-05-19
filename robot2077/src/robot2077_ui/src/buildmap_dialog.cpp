@@ -12,6 +12,10 @@ Buildmap_Dialog::Buildmap_Dialog(QWidget *parent) :
   render_panel_->initialize(manager_->getSceneManager(), manager_);
   manager_->initialize();
   manager_->startUpdate();
+
+  // add to move control
+  setFocusPolicy(Qt::StrongFocus);
+  connect(this, SIGNAL(movemsg_create(float,float,float)), this, SLOT(movemsg_btn_color(float,float,float)));
 }
 
 Buildmap_Dialog::~Buildmap_Dialog()
@@ -19,11 +23,13 @@ Buildmap_Dialog::~Buildmap_Dialog()
   delete ui;
 }
 
+// func call when click bace
 void Buildmap_Dialog::on_back_btn_clicked()
 {
   this->close();
 }
 
+// func call when click mapping
 void Buildmap_Dialog::on_mapping_btn_clicked()
 {
   manager_->removeAllDisplays();
@@ -42,27 +48,146 @@ void Buildmap_Dialog::on_mapping_btn_clicked()
   laser_->subProp("Size (m)")->setValue("0.1");
 }
 
-void Buildmap_Dialog::on_forward_btn_clicked()
-{
 
+// func blow to listen control and show
+void Buildmap_Dialog::movemsg_btn_color(float x, float y, float z)
+{
+  ui->forward_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->backward_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->left_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->right_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->leftturn_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->rightturn_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->stop_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  if (x > 0.2)
+    ui->forward_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  else if (x < -0.2)
+    ui->backward_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  if (y > 0.2)
+    ui->left_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  else if (y < -0.2)
+    ui->right_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  if (z > 0.2)
+    ui->leftturn_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  else if (z < -0.2)
+    ui->rightturn_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+  if (x == 0 && y == 0 && z == 0)
+    ui->stop_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
 }
 
-void Buildmap_Dialog::on_leftturn_btn_clicked()
+void Buildmap_Dialog::on_left_btn_clicked()
 {
-
+  float x = 0;
+  float y = 1;
+  float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
 }
 
 void Buildmap_Dialog::on_stop_btn_clicked()
 {
+  float x = 0;
+  float y = 0;
+  float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
+}
 
+void Buildmap_Dialog::on_right_btn_clicked()
+{
+  float x = 0;
+  float y = -1;
+  float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
+}
+
+void Buildmap_Dialog::on_leftturn_btn_clicked()
+{
+  float x = 0;
+  float y = 0;
+  float z = 1;
+  Q_EMIT movemsg_create(x, y, z);
+}
+
+void Buildmap_Dialog::on_forward_btn_clicked()
+{
+  float x = 1;
+  float y = 0;
+  float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
 }
 
 void Buildmap_Dialog::on_rightturn_btn_clicked()
 {
-
+  float x = 0;
+  float y = 0;
+  float z = -1;
+  Q_EMIT movemsg_create(x, y, z);
 }
 
 void Buildmap_Dialog::on_backward_btn_clicked()
 {
+  float x = -1;
+  float y = 0;
+  float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
+}
 
+void Buildmap_Dialog::keyPressEvent(QKeyEvent *event)
+{
+  float x = 0;
+  float y = 0;
+  float z = 0;
+  switch(event->key()) {
+  case Qt::Key_W:
+    x = 1;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_Q:
+    x = 1;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_E:
+    x = 1;
+    y = 0;
+    z = -1;
+    break;
+  case Qt::Key_A:
+    x = 0;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_S:
+    x = 0;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_D:
+    x = 0;
+    y = 0;
+    z = -1;
+    break;
+  case Qt::Key_Z:
+    x = -1;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_X:
+    x = -1;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_C:
+    x = -1;
+    y = 0;
+    z = -1;
+    break;
+  default:
+    x = 0;
+    y = 0;
+    z = 0;
+    break;
+  }
+
+  Q_EMIT movemsg_create(x, y, z);
 }
