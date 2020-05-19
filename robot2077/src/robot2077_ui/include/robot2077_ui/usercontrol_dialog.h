@@ -14,6 +14,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <map>
+#include <QKeyEvent>
 
 namespace Ui {
 class UserControl_Dialog;
@@ -37,6 +38,8 @@ public Q_SLOTS:
 
   void movemsg_get(float x, float y, float z);
 
+  void movemsg_btn_color(float x, float y, float z);
+
 private slots:
   void on_left_btn_clicked();
 
@@ -54,6 +57,7 @@ private slots:
 
 private:
   Ui::UserControl_Dialog *ui;
+  void keyPressEvent(QKeyEvent *event);
 
   CCtrlDashBoard *DashBoard_x;
   CCtrlDashBoard *DashBoard_y;

@@ -1,5 +1,6 @@
 #include "../include/robot2077_ui/usercontrol_dialog.h"
 #include "ui_usercontrol_dialog.h"
+#include <iostream>
 
 UserControl_Dialog::UserControl_Dialog(QWidget *parent) :
   QDialog(parent),
@@ -21,6 +22,10 @@ UserControl_Dialog::UserControl_Dialog(QWidget *parent) :
   DashBoard_z->setValue(0);
   DashBoard_z->setUnit(1);
 
+
+  setFocusPolicy(Qt::StrongFocus);
+
+  connect(this, SIGNAL(movemsg_create(float,float,float)), this, SLOT(movemsg_btn_color(float,float,float)));
 }
 
 UserControl_Dialog::~UserControl_Dialog()
@@ -33,7 +38,8 @@ void UserControl_Dialog::on_back_btn_clicked()
   this->close();
 }
 
-void UserControl_Dialog::movemsg_get(const float x, const float y, const float z) {
+void UserControl_Dialog::movemsg_btn_color(float x, float y, float z)
+{
   ui->forward_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->backword_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->left_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
@@ -41,20 +47,23 @@ void UserControl_Dialog::movemsg_get(const float x, const float y, const float z
   ui->leftturn_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->rightturn_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->stop_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
-  if (x > 0)
+  if (x > 0.2)
     ui->forward_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
-  else if (x < 0)
+  else if (x < -0.2)
     ui->backword_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
-  if (y > 0)
+  if (y > 0.2)
     ui->left_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
-  else if (y < 0)
+  else if (y < -0.2)
     ui->right_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
-  if (z > 0)
+  if (z > 0.2)
     ui->leftturn_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
-  else if (z < 0)
+  else if (z < -0.2)
     ui->rightturn_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
   if (x == 0 && y == 0 && z == 0)
     ui->stop_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+}
+
+void UserControl_Dialog::movemsg_get(const float x, const float y, const float z) {
   DashBoard_x->setValue(x * 50);
   DashBoard_y->setValue(y * 50);
   DashBoard_z->setValue(z * 50);
@@ -113,5 +122,66 @@ void UserControl_Dialog::on_backword_btn_clicked()
   float x = -1;
   float y = 0;
   float z = 0;
+  Q_EMIT movemsg_create(x, y, z);
+}
+
+void UserControl_Dialog::keyPressEvent(QKeyEvent *event)
+{
+  float x = 0;
+  float y = 0;
+  float z = 0;
+  switch(event->key()) {
+  case Qt::Key_W:
+    x = 1;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_Q:
+    x = 1;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_E:
+    x = 1;
+    y = 0;
+    z = -1;
+    break;
+  case Qt::Key_A:
+    x = 0;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_S:
+    x = 0;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_D:
+    x = 0;
+    y = 0;
+    z = -1;
+    break;
+  case Qt::Key_Z:
+    x = -1;
+    y = 0;
+    z = 1;
+    break;
+  case Qt::Key_X:
+    x = -1;
+    y = 0;
+    z = 0;
+    break;
+  case Qt::Key_C:
+    x = -1;
+    y = 0;
+    z = -1;
+    break;
+  default:
+    x = 0;
+    y = 0;
+    z = 0;
+    break;
+  }
+
   Q_EMIT movemsg_create(x, y, z);
 }
