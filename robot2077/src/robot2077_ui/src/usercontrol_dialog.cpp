@@ -41,7 +41,7 @@ void UserControl_Dialog::on_back_btn_clicked()
 void UserControl_Dialog::movemsg_btn_color(float x, float y, float z)
 {
   ui->forward_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
-  ui->backword_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
+  ui->backward_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->left_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->right_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
   ui->leftturn_btn->setStyleSheet("background-color: rgb(255, 255, 255)");
@@ -50,7 +50,7 @@ void UserControl_Dialog::movemsg_btn_color(float x, float y, float z)
   if (x > 0.2)
     ui->forward_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
   else if (x < -0.2)
-    ui->backword_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
+    ui->backward_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
   if (y > 0.2)
     ui->left_btn->setStyleSheet("background-color: rgb(255, 0, 0)");
   else if (y < -0.2)
@@ -117,7 +117,7 @@ void UserControl_Dialog::on_rightturn_btn_clicked()
   Q_EMIT movemsg_create(x, y, z);
 }
 
-void UserControl_Dialog::on_backword_btn_clicked()
+void UserControl_Dialog::on_backward_btn_clicked()
 {
   float x = -1;
   float y = 0;

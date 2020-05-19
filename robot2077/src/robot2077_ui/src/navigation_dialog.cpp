@@ -43,7 +43,6 @@ void Navigation_Dialog::on_back_btn_clicked()
 void Navigation_Dialog::on_set_pos_btn_clicked()
 {
   current_tool_ = tool_manager_->addTool("rviz/SetInitialPose");
-
   tool_manager_->setCurrentTool(current_tool_);
   manager_->startUpdate();
 }
@@ -51,9 +50,8 @@ void Navigation_Dialog::on_set_pos_btn_clicked()
 void Navigation_Dialog::on_set_goal_btn_clicked()
 {
   current_tool_ = tool_manager_->addTool("rviz/SetGoal");
-
   rviz::Property *pro = current_tool_->getPropertyContainer();
-  pro->subProp("Topic")->setValue("/robot2077/goal");
+  pro->subProp("Topic")->setValue("move_base_simple/goal");
   manager_->setFixedFrame("map");
   tool_manager_->setCurrentTool(current_tool_);
 
