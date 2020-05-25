@@ -23,7 +23,7 @@ public:
 public Q_SLOTS:
   void on_back_btn_clicked();
 
-  void on_set_pos_btn_clicked();
+  //void on_set_pos_btn_clicked();
 
   void on_set_goal_btn_clicked();
 

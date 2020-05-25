@@ -3,7 +3,9 @@
 本软件包内部为界面显示模块，目前包含了如下功能
 
 - 主动控制
-- 导航点发布
+- SLAM建图
+- 定点导航
+- 目标检测
 
 ### 介绍
 
@@ -11,10 +13,11 @@
 
 ### 使用方法
 
-在使用前需确保`robot2077_basic`软件包编译成功
+在使用前需确保`robot2077_basic` `robot2077_navigation` `robot2077_objdetect` `robot2077_slam` `robot2077_ui` `wpb_sim`软件包编译成功
 
 1. 程序启动：
 
 ```sh
-$ rosrun robot2077_ui robot2077_ui
+$ roslaunch robot2077_objdetect obj_test.launch
+$ roslaunch robot2077_ui robot2077_ui
 ```

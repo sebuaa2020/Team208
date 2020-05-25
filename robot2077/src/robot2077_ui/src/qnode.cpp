@@ -87,7 +87,7 @@ void QNode::movemsg_sub_callback(const geometry_msgs::TwistConstPtr &msg) {
   float x = msg->linear.x;
   float y = msg->linear.y;
   float z = msg->angular.z;
-ROS_INFO_STREAM("listened!");
+//ROS_INFO_STREAM("listened!");
   Q_EMIT QNode::movemsg_updated(x, y, z);
 }
 
@@ -97,7 +97,7 @@ void QNode::movemsg_send(float x, float y, float z) {
   vel.y = y;
   vel.z = z;
   movemsg_publisher.publish(vel);
-  ROS_INFO_STREAM("send!");
+  //ROS_INFO_STREAM("send!");
 }
 
 void QNode::joy_sub_callback(const sensor_msgs::JoyConstPtr &msg)

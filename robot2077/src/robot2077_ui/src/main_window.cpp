@@ -11,6 +11,8 @@
 // add by xq
 #include <QtGui>
 #include <QMessageBox>
+#include <QLabel>
+#include <QFileDialog>
 #include <iostream>
 #include "../include/robot2077_ui/main_window.hpp"
 #include "../include/robot2077_ui/usercontrol_dialog.h"
@@ -42,6 +44,16 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 
     QObject::connect(ui.usercontrol_btn, SIGNAL(clicked()), this, SLOT(usercontrol_change()));
 
+    qnode.init();
+
+    std::string logo;
+    ros::param::get("logo", logo);
+    QImage *image= new QImage;
+    image->load(QString::fromStdString(logo));
+    ui.theme->setPixmap(QPixmap::fromImage(*image));
+    ui.theme->setScaledContents(true);
+    ui.theme->resize(ui.theme->width(), ui.theme->height());
+
 	/*********************
 	** Logging
   **********************/
@@ -68,15 +80,6 @@ void MainWindow::showNoMasterMessage() {
  * These triggers whenever the button is clicked, regardless of whether it
  * is already checked or not.
  */
-
-void MainWindow::on_button_connect_clicked(bool check ) {
-  ROS_INFO_STREAM("clicked!");
-  if ( !qnode.init() ) {
-    showNoMasterMessage();
-  } else {
-    ui.button_connect->setEnabled(false);
-  }
-}
 
 /*****************************************************************************
 ** Implemenation [Slots][manually connected]
@@ -142,6 +145,7 @@ void MainWindow::usercontrol_change() {
 
 void MainWindow::on_buildmap_btn_clicked()
 {
+  //system("gnome-terminal -x bash -c 'source ~/catkin_ws/devel/setup.bash; roslaunch robot2077_slam gmapping.launch'&");
   Buildmap_Dialog* dlg = new Buildmap_Dialog();
   //connect(&qnode, SIGNAL(movemsg_updated(float, float, float)), dlg, SLOT(movemsg_get(float, float, float)));
   connect(dlg, SIGNAL(movemsg_create(float,float,float)), &qnode, SLOT(movemsg_send(float,float,float)));
@@ -161,6 +165,7 @@ void MainWindow::on_navigation_btn_clicked()
 
 void MainWindow::on_detect_grab_btn_clicked()
 {
+  //system("gnome-terminal -x bash -c 'source ~/catkin_ws/devel/setup.bash; roslaunch wpb_sim wpb_rviz.launch'&");
   Detect_Grab_Dialog* dlg = new Detect_Grab_Dialog();
   dlg->exec();
 }

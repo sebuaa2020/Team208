@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Back</string>
+    <string>返回</string>
    </property>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
@@ -60,7 +60,7 @@
        </font>
       </property>
       <property name="text">
-       <string>target points</string>
+       <string>目标点列表</string>
       </property>
      </widget>
     </item>
@@ -80,24 +80,6 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="set_pos_btn">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Set Pos</string>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QPushButton" name="set_goal_btn">
       <property name="minimumSize">
        <size>
@@ -111,7 +93,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Set Goal</string>
+       <string>设置目标点</string>
       </property>
      </widget>
     </item>
@@ -132,7 +114,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Commands</string>
+    <string>功能窗口</string>
    </property>
   </widget>
  </widget>

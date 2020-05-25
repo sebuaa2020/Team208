@@ -13,6 +13,8 @@ Buildmap_Dialog::Buildmap_Dialog(QWidget *parent) :
   manager_->initialize();
   manager_->startUpdate();
 
+  ui->map_name->setPlaceholderText("请输入地图名称");
+
   // add to move control
   setFocusPolicy(Qt::StrongFocus);
   connect(this, SIGNAL(movemsg_create(float,float,float)), this, SLOT(movemsg_btn_color(float,float,float)));
@@ -44,7 +46,7 @@ void Buildmap_Dialog::on_mapping_btn_clicked()
 
   rviz::Display *laser_ = manager_->createDisplay("rviz/LaserScan", "adjustable scan", true);
   ROS_ASSERT(laser_!=NULL);
-  laser_->subProp("Topic")->setValue("/scan");
+  laser_->subProp("Topic")->setValue("/robot2077/slam/scan");
   laser_->subProp("Size (m)")->setValue("0.1");
 }
 

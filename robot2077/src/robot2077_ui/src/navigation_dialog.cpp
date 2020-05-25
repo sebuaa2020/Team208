@@ -26,7 +26,7 @@ Navigation_Dialog::Navigation_Dialog(QWidget *parent) :
 
   rviz::Display *laser_ = manager_->createDisplay("rviz/LaserScan", "adjustable scan", true);
   ROS_ASSERT(laser_!=NULL);
-  laser_->subProp("Topic")->setValue("/scan");
+  laser_->subProp("Topic")->setValue("/robot2077/slam/scan");
   laser_->subProp("Size (m)")->setValue("0.1");
 }
 
@@ -40,12 +40,12 @@ void Navigation_Dialog::on_back_btn_clicked()
     this->close();
 }
 
-void Navigation_Dialog::on_set_pos_btn_clicked()
+/*void Navigation_Dialog::on_set_pos_btn_clicked()
 {
   current_tool_ = tool_manager_->addTool("rviz/SetInitialPose");
   tool_manager_->setCurrentTool(current_tool_);
   manager_->startUpdate();
-}
+}*/
 
 void Navigation_Dialog::on_set_goal_btn_clicked()
 {
