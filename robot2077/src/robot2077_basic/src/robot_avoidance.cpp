@@ -1,7 +1,8 @@
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "robot2077_basic/IsAvoidance.h"
-#include "cmath"
+#include "robot2077_basic/get_theta.h"
+
 // add by yzx
 // 该节点控制机器人的避障行为
 float AVOIDANCE_DIS_MAX = 1.0;
@@ -20,32 +21,6 @@ void laserListen(const sensor_msgs::LaserScan::ConstPtr &scan) {
     // ROS_INFO("Update the range_cache: %d, %.3f, %.3f, %.3f", range_size, range_angle_min, range_angle_max, range_angle_inc);
 }
 
-float getTheta(float x, float y) {
-    float eps = 1e-8;
-    if(fabs(x) < eps) {
-        if (fabs(y) < eps) return 0;
-        if(y < 0) return -90;
-        else return 90;
-    }
-    float theta = fabs(atan(y / x));
-    theta = theta / M_PI * 180;
-    if (x > 0 && y >= 0) {
-        theta = 0 + theta;
-    } else if (x > 0 && y <= 0) {
-        theta = 0 - theta;
-    } else if (x < 0 && y >= 0) {
-        theta = 180 - theta;
-    } else if (x < 0 && y <= 0) {
-        theta = -180 + theta;
-    }
-    return theta;
-}
-
-float getTheta(float theta) {
-    while(theta < -180) theta += 360;
-    while(theta > 180) theta -= 360;
-    return theta;
-}
 
 int getIndex(float theta) {
     theta = getTheta(theta);
