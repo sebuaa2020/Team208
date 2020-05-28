@@ -1,4 +1,4 @@
-#include "robot2077_basic/get_theta.h"
+#include "robot2077_basic/utils.h"
 
 float getTheta(float x, float y) {
     float eps = 1e-8;
@@ -25,4 +25,11 @@ float getTheta(float theta) {
     while(theta < -180) theta += 360;
     while(theta > 180) theta -= 360;
     return theta;
+}
+
+float check_vel(float vel, float vel_max) {
+	vel_max = fabs(vel_max);
+	if (vel < -vel_max) vel = -vel_max;
+	if (vel > vel_max) vel = vel_max;
+	return vel;
 }

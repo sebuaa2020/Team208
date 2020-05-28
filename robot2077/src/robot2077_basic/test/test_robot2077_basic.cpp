@@ -1,5 +1,7 @@
-#include <robot2077_basic/get_theta.h>
+#include <robot2077_basic/utils.h>
 #include <gtest/gtest.h>
+#include <cstdlib>
+#include <ctime>
 
 TEST(getTheta_test, test1) {
     float x = 0, y = 0;
@@ -86,7 +88,22 @@ TEST(getTheta_test, test10) {
     }
 }
 
+TEST(check_vel_test, test1) {
+    float vel, vel_max, r_vel;
+    for (int i = 0; i < 1000; i++) {
+        vel = (rand() % 10000 - 5000) / 10000.0;
+        vel_max = (rand() % 5000) / 10000.0;
+        r_vel = check_vel(vel, vel_max);
+        EXPECT_GE(r_vel, -vel_max);
+        EXPECT_LE(r_vel, vel_max);
+        if (vel > vel_max) EXPECT_EQ(r_vel, vel_max);
+        else if (vel < -vel_max) EXPECT_EQ(r_vel, -vel_max);
+        else EXPECT_EQ(r_vel, vel);
+    }
+}
+
 int main(int argc, char **argv) {
+    srand(time(0));
     testing::InitGoogleTest(&argc, argv);
 
     return RUN_ALL_TESTS();

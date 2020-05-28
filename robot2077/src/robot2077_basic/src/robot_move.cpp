@@ -2,6 +2,7 @@
 #include "geometry_msgs/Twist.h"
 #include "robot2077_basic/Movemsg.h"
 #include "robot2077_basic/IsAvoidance.h"
+#include "robot2077_basic/utils.h"
 #include <iostream>
 // add by yzx
 // 该节点控制机器人的运动行为
@@ -13,12 +14,7 @@ geometry_msgs::Twist vel_temp;
 
 ros::ServiceClient checkAvoidance;
 
-float check_vel(float vel, float vel_max) {
-	vel_max = fabs(vel_max);
-	if (vel < -vel_max) vel = -vel_max;
-	if (vel > vel_max) vel = vel_max;
-	return vel;
-}
+
 
 void move_listen(const robot2077_basic::Movemsg::ConstPtr& msg) {
     ROS_INFO("x: %.6f, y: %.6f, z: %.6f", msg->x, msg->y, msg->z);

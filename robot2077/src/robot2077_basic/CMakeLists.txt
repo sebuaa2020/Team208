@@ -196,9 +196,9 @@ include_directories(
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
-catkin_add_gtest(robot_avoidance_test test/test_robot_avoidance.cpp)
-if(TARGET robot_avoidance_test)
-  target_link_libraries(robot_avoidance_test ${catkin_LIBRARIES} get_theta)
+catkin_add_gtest(robot2077_basic_test test/test_robot2077_basic.cpp)
+if(TARGET robot2077_basic_test)
+  target_link_libraries(robot2077_basic_test ${catkin_LIBRARIES} utils)
 endif()
 
 if(CATKIN_ENABLE_TESTING)
@@ -223,6 +223,7 @@ add_executable(robot_move
 add_dependencies(robot_move ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_move
   ${catkin_LIBRARIES}
+  utils
 )
 
 add_executable(robot_avoidance
@@ -231,10 +232,10 @@ add_executable(robot_avoidance
 add_dependencies(robot_avoidance ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_avoidance
   ${catkin_LIBRARIES}
-  get_theta
+  utils
 )
 
-add_library(get_theta
-  src/get_theta.cpp
-  include/robot2077_basic/get_theta.h
+add_library(utils
+  src/utils.cpp
+  include/robot2077_basic/utils.h
 )
