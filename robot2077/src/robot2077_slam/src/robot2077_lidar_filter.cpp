@@ -83,6 +83,9 @@ void CWPHLidarFilter::lidarCallback(const sensor_msgs::LaserScan::ConstPtr& scan
         if(new_scan.ranges[i] < 0.25)
         {
             new_scan.ranges[i] = new_scan.range_max+1.0;
+            if (new_scan.ranges[i] < 0.25) {
+                new_scan.ranges[i] = 0.25;
+            }
         }
         new_scan.intensities[i] = scan->intensities[i];
     }
