@@ -30,7 +30,7 @@
 #include <math.h>
 #include <iostream>
 
-// add by gld
+
 static tf::TransformListener* tf_listener;
 static std::string point_cloud_topic;
 static ros::Publisher pc_pub;
@@ -141,7 +141,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
         extract.filter (*plane);
         float plane_height = plane->points[0].z;
         ROS_WARN("%d - plana: %d points. height =%.2f" ,i, plane->width * plane->height,plane_height);
-        if(plane_height > 0.6 && plane_height < 0.9) 
+        if(plane_height > 0.6 && plane_height < 1.5) 
         break;
 
         // Create the filtering object
