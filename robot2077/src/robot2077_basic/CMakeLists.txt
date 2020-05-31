@@ -198,7 +198,7 @@ include_directories(
 
 catkin_add_gtest(robot2077_basic_test test/test_robot2077_basic.cpp)
 if(TARGET robot2077_basic_test)
-  target_link_libraries(robot2077_basic_test ${catkin_LIBRARIES} utils)
+  target_link_libraries(robot2077_basic_test ${catkin_LIBRARIES} robot2077_basic_utils)
 endif()
 
 if(CATKIN_ENABLE_TESTING)
@@ -223,7 +223,7 @@ add_executable(robot_move
 add_dependencies(robot_move ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_move
   ${catkin_LIBRARIES}
-  utils
+  robot2077_basic_utils
 )
 
 add_executable(robot_avoidance
@@ -232,10 +232,10 @@ add_executable(robot_avoidance
 add_dependencies(robot_avoidance ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(robot_avoidance
   ${catkin_LIBRARIES}
-  utils
+  robot2077_basic_utils
 )
 
-add_library(utils
+add_library(robot2077_basic_utils
   src/utils.cpp
   include/robot2077_basic/utils.h
 )
