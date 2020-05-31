@@ -30,7 +30,7 @@
 #include <math.h>
 #include <iostream>
 
-
+// add by gld
 static tf::TransformListener* tf_listener;
 static std::string point_cloud_topic;
 static ros::Publisher pc_pub;
@@ -75,6 +75,12 @@ void RemoveBoxes();
 
 void pc2_callback(const sensor_msgs::PointCloud2& pc) {
     printf("In callback!\n");
+
+    //pcl::PointCloud<pcl::PoingXYZ> save;
+    //pcl::fromROSMsg(pc, save);
+    //pcl::io::savePCDFile("/home/cauchymars/demo2_ws/src/robot2077_objdetect/test/save_1.pcd", pc);
+    //printf("save finishes!\n");
+    
     sensor_msgs::PointCloud2 footprint;
     if (!tf_listener->waitForTransform("/base_footprint", pc.header.frame_id, pc.header.stamp, ros::Duration(5.0))) {
         return ;
@@ -351,7 +357,8 @@ int main(int argc, char** argv) {
     tf_listener = new tf::TransformListener();
 
     ros::NodeHandle n_private("~");
-    n_private.param<std::string>("topic", point_cloud_topic, "/kinect2/sd/points");
+    //n_private.param<std::string>("topic", point_cloud_topic, "/kinect2/sd/points");
+    n_private.param<std::string>("topic", point_cloud_topic, "/robot2077/obj_detect/pc_publish");
 
     ros::NodeHandle n;
     ros::Subscriber pc_sub = n.subscribe(point_cloud_topic, 10, pc2_callback);

@@ -111,7 +111,8 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(include ${PCL_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+include_directories(
+  include ${catkin_INCLUDE_DIRS}include ${PCL_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -201,5 +202,13 @@ include_directories(include ${PCL_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
 add_executable(obj_detect src/obj_detect.cpp)
 add_dependencies(obj_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(obj_detect
+  ${catkin_LIBRARIES}
+)
+
+add_executable(test_1
+  src/test_1.cpp
+)
+add_dependencies(test_1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_1
   ${catkin_LIBRARIES}
 )
