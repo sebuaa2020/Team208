@@ -994,7 +994,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/tea_table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/tea_table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1053,7 +1053,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/sofa.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/sofa.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1112,7 +1112,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/bed.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/bed.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1255,7 +1255,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1419,7 +1419,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/cupboard.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/cupboard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1583,7 +1583,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/cupboard.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/cupboard.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1747,7 +1747,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/chair.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/chair.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -1890,7 +1890,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2054,7 +2054,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/chair.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/chair.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2197,7 +2197,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2361,7 +2361,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/chair.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/chair.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2504,7 +2504,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2647,7 +2647,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/table.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/table.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2769,7 +2769,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/bookshelft.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/bookshelft.dae</uri>
             </mesh>
           </geometry>
         </visual>
@@ -2957,7 +2957,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/robot/catkin_ws/src/wpb_sim/meshes/chair.dae</uri>
+              <uri>/home/yzx835/Team208/robot2077/src/wpb_sim/meshes/chair.dae</uri>
             </mesh>
           </geometry>
         </visual>
