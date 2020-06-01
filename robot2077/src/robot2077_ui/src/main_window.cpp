@@ -155,10 +155,6 @@ void MainWindow::on_buildmap_btn_clicked()
 
 void MainWindow::on_navigation_btn_clicked()
 {
-  /*MyViz* myviz = new MyViz();
-  myviz->show();
-  myviz->resize(600, 400);
-  myviz->setWindowTitle("Mapping Show");*/
   Navigation_Dialog* dlg = new Navigation_Dialog();
   dlg->exec();
 }

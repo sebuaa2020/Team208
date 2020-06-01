@@ -58,11 +58,11 @@ void Detect_Grab_Dialog::on_detect_btn_clicked()
     laser_->subProp("Size (m)")->setValue("0.1");*/
 
     //相机
-  /*rviz::Display *camera_ = manager_->createDisplay("rviz/Camera", "adjustable camera", true);
+  rviz::Display *camera_ = manager_->createDisplay("rviz/PointCloud2", "adjustable camera", true);
   ROS_ASSERT(camera_!=NULL);
-  camera_->subProp("Image Topic")->setValue("/kinect2/hd/image_color_rect");*/
-  /*camera_->subProp("Size (m)")->setValue("0.01");
-  camera_->subProp("Alpha")->setValue("1");*/
+  camera_->subProp("Topic")->setValue("/kinect2/sd/points");
+  camera_->subProp("Size (m)")->setValue("0.01");
+  camera_->subProp("Alpha")->setValue("1");
 /*
   rviz::Display *camera_RGB_ = manager_->createDisplay("rviz/Kinect2_RGB", "adjustable camera_RGB", true);
   ROS_ASSERT(camera_RGB_!=NULL);

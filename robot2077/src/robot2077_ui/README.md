@@ -13,7 +13,8 @@
 
 ### 使用方法
 
-在使用前需确保`robot2077_basic` `robot2077_navigation` `robot2077_objdetect` `robot2077_slam` `robot2077_ui` `wpb_sim`软件包编译成功
+1.需修改buildmap_dialog.cpp和navigation_dialog.cpp中的绝对路径;
+2.在使用前需确保`robot2077_basic` `robot2077_navigation` `robot2077_objdetect` `robot2077_slam` `robot2077_ui` `wpb_sim`软件包编译成功
 
 1. 程序启动：
 

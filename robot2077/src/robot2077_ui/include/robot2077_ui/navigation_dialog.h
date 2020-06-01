@@ -27,8 +27,14 @@ public Q_SLOTS:
 
   void on_set_goal_btn_clicked();
 
+  void on_mapselect_btn_clicked();
+
+  void on_mapshow_btn_clicked();
+
 private:
   Ui::Navigation_Dialog *ui;
+
+  QString mapfile;
 
   rviz::VisualizationManager *manager_;
   rviz::RenderPanel *render_panel_;

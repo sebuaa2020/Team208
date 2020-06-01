@@ -1,5 +1,6 @@
 #include "../include/robot2077_ui/buildmap_dialog.h"
 #include "ui_buildmap_dialog.h"
+#include "QMessageBox"
 // add by xq
 Buildmap_Dialog::Buildmap_Dialog(QWidget *parent) :
   QDialog(parent),
@@ -28,12 +29,17 @@ Buildmap_Dialog::~Buildmap_Dialog()
 // func call when click bace
 void Buildmap_Dialog::on_back_btn_clicked()
 {
+  QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; rosnode kill /slam_gmapping '&";
+  system(str.toLatin1().data());
   this->close();
 }
 
 // func call when click mapping
 void Buildmap_Dialog::on_mapping_btn_clicked()
 {
+  QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui slam.launch '&";
+  system(str.toLatin1().data());
+
   manager_->removeAllDisplays();
 
   rviz::Display *map_ = manager_->createDisplay("rviz/Map", "adjustable map", true);
@@ -198,8 +204,15 @@ void Buildmap_Dialog::keyPressEvent(QKeyEvent *event)
 void Buildmap_Dialog::on_map_save_clicked()
 {
    std::string map_name = ui->map_name->text().toStdString();
-   std::string s1="rosrun map_server map_saver -f ~/Team208/robot2077/src/robot2077_slam/maps/" + map_name;
-   std::stringstream ss;
-   ss<<"gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash;"<< s1 << "'";
-   system(ss.str().c_str());
+   if (map_name == "")
+   {
+       QMessageBox::information(this, tr("ERROR"), tr("地图名不能为空"));
+   }
+   else
+   {
+       std::string s1="rosrun map_server map_saver -f ~/GIT/Team208/robot2077/src/robot2077_slam/maps/" + map_name;
+       std::stringstream ss;
+       ss<<"gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash;"<< s1 << "'";
+       system(ss.str().c_str());
+   }
 }

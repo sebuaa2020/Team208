@@ -1,0 +1,11 @@
+<!-- 启动导航功能-->
+<!--add by xq-->
+<launch>
+	<!--启动向我们自定义运动模块的转化节点-->
+		<node name="navi_move_trans" pkg="robot2077_navigation" type="navi_move_trans" required="true"/>
+	<!--启动导航功能acml-->
+	  	<include file="$(find robot2077_navigation)/launch/navi.launch">
+		<!--使用的地图参数-->
+	    		<arg name="map_file" value="$(find robot2077_slam)/maps/navi.yaml"/>
+	  	</include>
+</launch>

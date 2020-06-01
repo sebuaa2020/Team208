@@ -22,29 +22,7 @@
     <!-- 基础移动 -->
 	    <!-- <include file="$(find robot2077_basic)/launch/robot_move.launch" /> -->
 	    <include file="$(find robot2077_basic)/launch/robot_move_with_avoidance.launch" />
-
-    <!-- SLAM建图 -->
-	    
-	    <!--启动gmapping算法-->
-	    <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
-	      <param name="base_frame" value="$(arg base_frame)"/>   <!--底盘坐标系-->
-	      <param name="odom_frame" value="$(arg odom_frame)"/>   <!--里程计坐标系-->
-	      <remap from="scan" to="$(arg scan_topic)"/>   <!--雷达获得的原始数据先发送到/scan中，过滤之后到/robot2077/slam/scan中-->
-	    </node>
-
-	    <!-- Run lidar filter 启动雷达结果的过滤模块-->
-	    <node pkg="robot2077_slam" type="robot2077_lidar_filter" name="robot2077_lidar_filter">
-	      <param name="pub_topic" value="$(arg scan_topic)"/>
-	    </node>
-
-    	  <!-- 启动导航功能-->
-	    <!--启动向我们自定义运动模块的转化节点-->
-		<node name="navi_move_trans" pkg="robot2077_navigation" type="navi_move_trans"/>
-	    <!--启动导航功能acml-->
-	  <include file="$(find robot2077_navigation)/launch/navi.launch">
-	    <!--使用的地图参数-->
-	    <arg name="map_file" value="$(find robot2077_slam)/maps/navi.yaml"/>
-	  </include>
+	    <node pkg="joy" name="joy" type="joy_node"/>
 
     <!-- 目标检测与抓取 -->
     	    <!-- 目标检测 -->
