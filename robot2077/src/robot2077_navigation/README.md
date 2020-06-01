@@ -12,6 +12,21 @@
 $ roslaunch robot2077_navigation robot2077_navi.launch 
 ```
 
+1. 设置导航点：在`rviz`的工具栏中选择`Add Waypoint`,注：如果没有则在点击最后的加号添加这个工具
+
+2. 在设置完所有的导航点之后保存导航点
+
+   ```sh
+   $ rosrun waterplus_map_tools wp_saver
+   ```
+
+3. 开始巡航：
+
+   ```sh
+   $ rosrun waterplus_map_tools wp_nav_test
+   ```
+
+   
 
 ## 注意事项
 

@@ -21,7 +21,13 @@
   <!--启动导航功能acml-->
   <include file="$(find robot2077_navigation)/launch/navi.launch">
     <!--使用的地图参数-->
-    <arg name="map_file" value="$(find robot2077_slam)/maps/navi.yaml"/>
+    <arg name="map_file" value="$(find robot2077_slam)/maps/new_navi.yaml"/>
   </include>
+
+  <!-- Map tools  -->
+  <arg name="waypoint_name" default="waypoints"/>
+  <node pkg="waterplus_map_tools" type="wp_manager" name="wp_manager" output="screen">
+    <param name="load" type="string" value="$(find robot2077_navigation)/waypoints/$(arg waypoint_name).xml"/> 
+  </node>
 
 </launch>
