@@ -115,9 +115,9 @@ void QNode::joy_sub_callback(const sensor_msgs::JoyConstPtr &msg)
       vel.y = 0;
       vel.z = 0;
   } else {
-      vel.x = msg->axes[1];
-      vel.y = msg->axes[0];
-      vel.z = msg->axes[3];
+      vel.x = fabs(msg->axes[1]) >= 0.2 ? msg->axes[1] : 0;
+      vel.y = fabs(msg->axes[0]) >= 0.2 ? msg->axes[0] : 0;
+      vel.z = fabs(msg->axes[3]) >= 0.2 ? msg->axes[3] : 0;
   }
   movemsg_publisher.publish(vel);
   Q_EMIT QNode::joymsg(vel.x, vel.y, vel.z);
