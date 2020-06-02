@@ -24,6 +24,7 @@
 #include <geometry_msgs/PointStamped.h>
 #include <tf/transform_listener.h>
 #include <visualization_msgs/Marker.h>
+#include <std_msgs/UInt16.h>
 #include "highgui.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -35,6 +36,7 @@ static tf::TransformListener* tf_listener;
 static std::string point_cloud_topic;
 static ros::Publisher pc_pub;
 static ros::Publisher mark_pub;
+static ros::Publisher obj_count_pub;
 
 static visualization_msgs::Marker line_box;
 static visualization_msgs::Marker line_follow;
@@ -208,6 +210,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
 
             RemoveBoxes();
             int nObjCnt = 0;
+            std_msgs::UInt16 ObjCnt;
             for(int i = 0; i<cluster_indices.size(); ++i)
             {
                 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object_cloud (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -246,8 +249,11 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
                     DrawText(obj_id,0.08, boxMarker.xMax,(boxMarker.yMin+boxMarker.yMax)/2,boxMarker.zMax + 0.04, 1,0,1);
                     nObjCnt++;
                     ROS_WARN("[obj_%d] xMin= %.2f yMin = %.2f yMax = %.2f",i,boxMarker.xMin, boxMarker.yMin, boxMarker.yMax);
-                } 
+                }
+                
             }
+            ObjCnt.data = nObjCnt;
+            obj_count_pub.publish(ObjCnt); // Publish the number of objects for UI. 
 
         }
         else std::cout << "The chosen hull is not planar." << std::endl;
@@ -365,6 +371,7 @@ int main(int argc, char** argv) {
     printf("subscribe finishes!\n");
     pc_pub = n.advertise<sensor_msgs::PointCloud2>("/robot2077/obj_detect/obj_pc", 10);
     mark_pub = n.advertise<visualization_msgs::Marker>("/robot2077/obj_detect/obj_mark", 10);
+    obj_count_pub = n.advertise<std_msgs::UInt16>("/robot2077/obj_detect/obj_count", 10);
 
     seg_objs = n.advertise<PointCloud>("/robot2077/obj_detect/segment_objs", 10);
     seg_planes = n.advertise<PointCloud>("/robot2077/obj_detect/segment_planes", 10);
