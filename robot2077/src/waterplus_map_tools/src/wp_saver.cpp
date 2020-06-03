@@ -49,6 +49,8 @@ int main(int argc, char** argv)
     char const* home = getenv("HOME");
     strSaveFile = home;
     strSaveFile += "/waypoints.xml";
+    ros::NodeHandle n_param("~");
+    n_param.param<std::string>("savefile", strSaveFile, "");
     srvS.request.filename = strSaveFile;
 
     for(int i=1; i<argc; i++)

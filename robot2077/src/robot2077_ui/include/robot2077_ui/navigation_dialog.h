@@ -7,6 +7,7 @@
 #include <rviz/display.h>
 #include <rviz/tool.h>
 #include <rviz/tool_manager.h>
+#include <waterplus_map_tools/Waypoint.h>
 
 namespace Ui {
 class Navigation_Dialog;
@@ -31,10 +32,14 @@ public Q_SLOTS:
 
   void on_mapshow_btn_clicked();
 
+  void on_save_goal_btn_clicked();
+
 private:
   Ui::Navigation_Dialog *ui;
 
   QString mapfile;
+
+  QString mapname;
 
   rviz::VisualizationManager *manager_;
   rviz::RenderPanel *render_panel_;

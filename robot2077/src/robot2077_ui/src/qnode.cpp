@@ -51,6 +51,7 @@ bool QNode::init() {
   movemsg_subscriber = n.subscribe("/cmd_vel", 10, &QNode::movemsg_sub_callback, this);
   movemsg_publisher = n.advertise<robot2077_basic::Movemsg>("/robot2077/robot_move/vel", 10);
   joy_subscriber = n.subscribe("/joy", 10, &QNode::joy_sub_callback, this);
+  detectmsg_subscriber = n.subscribe("/robot2077/obj_detect/obj_count", 10, &QNode::detect_sub_callback, this);
 	start();
 	return true;
 }
@@ -121,6 +122,12 @@ void QNode::joy_sub_callback(const sensor_msgs::JoyConstPtr &msg)
   }
   movemsg_publisher.publish(vel);
   Q_EMIT QNode::joymsg(vel.x, vel.y, vel.z);
+}
+
+void QNode::detect_sub_callback(const std_msgs::UInt16ConstPtr &msg)
+{
+    int num = msg->data;
+    Q_EMIT QNode::detectmsg(num);
 }
 
 }  // namespace robot2077_ui

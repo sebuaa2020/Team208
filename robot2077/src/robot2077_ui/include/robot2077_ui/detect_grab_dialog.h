@@ -28,6 +28,10 @@ public Q_SLOTS:
 
   void on_detect_btn_clicked();
 
+  void get_detectmsg(int num);
+
+  void getButtonText(bool check);
+
 private:
   Ui::Detect_Grab_Dialog *ui;
 

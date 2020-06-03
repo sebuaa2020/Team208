@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
+    <width>756</width>
     <height>547</height>
    </rect>
   </property>
@@ -85,16 +85,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QListView" name="item_listview">
-   <property name="geometry">
-    <rect>
-     <x>550</x>
-     <y>160</y>
-     <width>161</width>
-     <height>311</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -129,6 +119,21 @@
    </property>
    <property name="text">
     <string>抓取</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="item_listwidget">
+   <property name="geometry">
+    <rect>
+     <x>550</x>
+     <y>160</y>
+     <width>191</width>
+     <height>291</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
    </property>
   </widget>
  </widget>

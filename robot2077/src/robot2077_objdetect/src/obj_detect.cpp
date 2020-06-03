@@ -347,6 +347,7 @@ void RemoveBoxes()
     line_box.action = 3;
     line_box.points.clear();
     mark_pub.publish(line_box);
+    line_follow.header.frame_id = "base_footprint";
     line_follow.action = 3;
     line_follow.points.clear();
     mark_pub.publish(line_follow);
@@ -363,8 +364,8 @@ int main(int argc, char** argv) {
     tf_listener = new tf::TransformListener();
 
     ros::NodeHandle n_private("~");
-    //n_private.param<std::string>("topic", point_cloud_topic, "/kinect2/sd/points");
-    n_private.param<std::string>("topic", point_cloud_topic, "/robot2077/obj_detect/pc_publish");
+    n_private.param<std::string>("topic", point_cloud_topic, "/kinect2/sd/points");
+    //n_private.param<std::string>("topic", point_cloud_topic, "/robot2077/obj_detect/pc_publish");
 
     ros::NodeHandle n;
     ros::Subscriber pc_sub = n.subscribe(point_cloud_topic, 10, pc2_callback);

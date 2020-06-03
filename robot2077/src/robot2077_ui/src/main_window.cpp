@@ -163,6 +163,7 @@ void MainWindow::on_detect_grab_btn_clicked()
 {
   //system("gnome-terminal -x bash -c 'source ~/catkin_ws/devel/setup.bash; roslaunch wpb_sim wpb_rviz.launch'&");
   Detect_Grab_Dialog* dlg = new Detect_Grab_Dialog();
+  connect(&qnode, SIGNAL(detectmsg(int)), dlg, SLOT(get_detectmsg(int)));
   dlg->exec();
 }
 

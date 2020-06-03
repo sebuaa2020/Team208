@@ -10,6 +10,7 @@ Navigation_Dialog::Navigation_Dialog(QWidget *parent) :
   ui->setupUi(this);
 
   mapfile = "";
+  mapname = "";
 
   render_panel_ = new rviz::RenderPanel();
   ui->mapdisplay_layout->addWidget(render_panel_);
@@ -46,9 +47,15 @@ void Navigation_Dialog::on_back_btn_clicked()
 
 void Navigation_Dialog::on_set_goal_btn_clicked()
 {
-  current_tool_ = tool_manager_->addTool("rviz/SetGoal");
+  /*current_tool_ = tool_manager_->addTool("rviz/SetGoal");
   rviz::Property *pro = current_tool_->getPropertyContainer();
   pro->subProp("Topic")->setValue("move_base_simple/goal");
+  manager_->setFixedFrame("map");
+  tool_manager_->setCurrentTool(current_tool_);*/
+
+  current_tool_ = tool_manager_->addTool("rviz/AddWaypoint");
+  rviz::Property *pro = current_tool_->getPropertyContainer();
+  pro->subProp("Topic")->setValue("/waterplus/add_waypoint");
   manager_->setFixedFrame("map");
   tool_manager_->setCurrentTool(current_tool_);
 
@@ -63,6 +70,8 @@ void Navigation_Dialog::on_mapselect_btn_clicked()
     fileDialog->setNameFilter(tr("Map file(*.yaml)"));
     mapfile = fileDialog->getOpenFileName();*/
     mapfile = QFileDialog::getOpenFileName(this, tr("选择地图"), "..", "", 0);
+    QString mapname = "所选地图:" + mapfile.right(mapfile.length() - mapfile.lastIndexOf("/") - 1);
+    ui->map_name->setText(mapname);
 }
 
 void Navigation_Dialog::on_mapshow_btn_clicked()
@@ -71,8 +80,14 @@ void Navigation_Dialog::on_mapshow_btn_clicked()
     {
         QMessageBox::information(this, tr("ERROR"), tr("请先选择地图"));
     }
+    else if (mapfile.right(mapfile.length() - mapfile.lastIndexOf(".") - 1) != "yaml")
+    {
+        QMessageBox::information(this, tr("ERROR"), tr("地图文件后缀名应为yaml"));
+    }
     else
     {
+        mapname = mapfile.mid(mapfile.lastIndexOf("/") + 1, mapfile.lastIndexOf(".") - mapfile.lastIndexOf("/") - 1);
+        QMessageBox::information(this, tr("ERROR"), mapname);
         manager_->setFixedFrame("/map");
         manager_->removeAllDisplays();
 
@@ -83,7 +98,35 @@ void Navigation_Dialog::on_mapshow_btn_clicked()
         rviz::Display *robot_ = manager_->createDisplay("rviz/RobotModel", "adjustable robot", true);
         ROS_ASSERT(robot_!=NULL);
         robot_->subProp("Robot Description")->setValue("robot_description");
-        QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui navigation.launch map_file:=" + mapfile + "'&";
+
+        rviz::Display *mark_ = manager_->createDisplay("rviz/Marker", "adjustable mark", true);
+        if (mark_!=NULL)
+        {
+          ROS_ASSERT(mark_!=NULL);
+          mark_->subProp("Marker Topic")->setValue("/waypoints_marker");
+        }
+
+        /*rviz::Display *path_ = manager_->createDisplay("rviz/Path", "adjustable path", true);
+        if (path_!=NULL)
+        {
+          ROS_ASSERT(path_!=NULL);
+          path_->subProp("Topic")->setValue("/move_base/NavfnROS/plan");
+        }*/
+
+        QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui navigation.launch map_file:=" + mapfile + " waypoint_name:="+ mapname + "'&";
+        system(str.toLatin1().data());
+    }
+}
+
+void Navigation_Dialog::on_save_goal_btn_clicked()
+{
+    if (mapfile == "")
+    {
+        QMessageBox::information(this, tr("ERROR"), tr("请先选择地图"));
+    }
+    else
+    {
+        QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui pointsave.launch map_name:="+ mapname + "'&";
         system(str.toLatin1().data());
     }
 }

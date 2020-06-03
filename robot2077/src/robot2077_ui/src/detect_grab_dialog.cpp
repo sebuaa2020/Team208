@@ -1,5 +1,8 @@
 #include "../include/robot2077_ui/detect_grab_dialog.h"
 #include "ui_detect_grab_dialog.h"
+#include "QCheckBox"
+#include "QObject"
+#include "QMessageBox"
 // add by xq
 Detect_Grab_Dialog::Detect_Grab_Dialog(QWidget *parent) :
   QDialog(parent),
@@ -90,4 +93,28 @@ void Detect_Grab_Dialog::on_detect_btn_clicked()
   rviz::Display *seg_planes_ = manager_->createDisplay("rviz/PointCloud2", "adjustable planes", true);
   ROS_ASSERT(seg_planes_!=NULL);
   seg_planes_->subProp("Topic")->setValue("/robot2077/obj_detect/segment_planes");*/
+}
+
+void Detect_Grab_Dialog::get_detectmsg(int num)
+{
+    ui->item_listwidget->clear();
+    for (int i=1;i<=num;i++)
+    {
+        QListWidgetItem *item = new QListWidgetItem();
+        QString description = "Object" + QString::number(i);
+        QCheckBox *box = new QCheckBox(description);
+        box->setCheckable(true);
+        connect(box, SIGNAL(clicked(bool)), this, SLOT(getButtonText(bool)));
+        ui->item_listwidget->addItem(item);
+        ui->item_listwidget->setItemWidget(item, box);
+    }
+}
+
+void Detect_Grab_Dialog::getButtonText(bool check)
+{
+    if (check == true)
+    {
+    QCheckBox *box = (QCheckBox *)(sender());
+    QMessageBox::information(this, tr("!!!"), box->text());
+    }
 }
