@@ -13,16 +13,20 @@ set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 
 # qt_build provides the qt cmake glue, roscpp the comms for a default talker
 
-find_package(catkin REQUIRED COMPONENTS roscpp robot2077_basic rviz)
+find_package(catkin REQUIRED COMPONENTS roscpp robot2077_basic rviz cmake_modules)
 find_package(Qt5 REQUIRED Core Widgets)
 set(QT_LIBRARIES Qt5::Widgets)
-include_directories(${catkin_INCLUDE_DIRS})
+include_directories(
+  include ${catkin_INCLUDE_DIRS}${catkin_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS})
 
 # Use this to define what the package will export (e.g. libs, headers).
 # Since the default here is to produce only a binary, we don't worry about
 # exporting anything. 
-catkin_package()
+catkin_package(
+  DEPENDS TinyXML
+)
 
+find_package(TinyXML REQUIRED)
 ##############################################################################
 # Qt Environment
 ##############################################################################
@@ -57,3 +61,14 @@ add_executable(robot2077_ui ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${
 target_link_libraries(robot2077_ui ${QT_LIBRARIES} ${catkin_LIBRARIES})
 install(TARGETS robot2077_ui RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
+
+
+add_library(loadWayPoint
+  src/loadWayPoint.cpp
+  include/robot2077_ui/loadWayPoint.h
+)
+add_dependencies(loadWayPoint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(loadWayPoint
+  ${catkin_LIBRARIES}
+  ${TinyXML_INCLUDE_DIRS}
+)
