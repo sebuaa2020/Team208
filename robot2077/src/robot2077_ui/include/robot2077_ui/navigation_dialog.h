@@ -8,6 +8,7 @@
 #include <rviz/tool.h>
 #include <rviz/tool_manager.h>
 #include <waterplus_map_tools/Waypoint.h>
+#include "robot2077_ui/loadWayPoint.h"
 
 namespace Ui {
 class Navigation_Dialog;

@@ -17,7 +17,8 @@ find_package(catkin REQUIRED COMPONENTS roscpp robot2077_basic rviz cmake_module
 find_package(Qt5 REQUIRED Core Widgets)
 set(QT_LIBRARIES Qt5::Widgets)
 include_directories(
-  include ${catkin_INCLUDE_DIRS}${catkin_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS})
+  include ${catkin_INCLUDE_DIRS}${catkin_INCLUDE_DIRS} ${TinyXML_INCLUDE_DIRS}
+)
 
 # Use this to define what the package will export (e.g. libs, headers).
 # Since the default here is to produce only a binary, we don't worry about
@@ -58,7 +59,7 @@ file(GLOB_RECURSE QT_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} FOLLOW_SYMLINK
 ##############################################################################
 
 add_executable(robot2077_ui ${QT_SOURCES} ${QT_RESOURCES_CPP} ${QT_FORMS_HPP} ${QT_MOC_HPP})
-target_link_libraries(robot2077_ui ${QT_LIBRARIES} ${catkin_LIBRARIES})
+target_link_libraries(robot2077_ui ${QT_LIBRARIES} ${catkin_LIBRARIES} loadWayPoint) 
 install(TARGETS robot2077_ui RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 
@@ -70,5 +71,5 @@ add_library(loadWayPoint
 add_dependencies(loadWayPoint ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(loadWayPoint
   ${catkin_LIBRARIES}
-  ${TinyXML_INCLUDE_DIRS}
+  ${TinyXML_LIBRARIES}
 )
