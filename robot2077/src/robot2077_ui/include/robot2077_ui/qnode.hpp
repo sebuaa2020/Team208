@@ -25,9 +25,11 @@
 #include <QThread>
 #include <QStringListModel>
 #include "geometry_msgs/Twist.h"
+#include "geometry_msgs/PoseStamped.h"
 #include "sensor_msgs/Joy.h"
 #include "std_msgs/UInt16.h"
 #include "robot2077_basic/Movemsg.h"
+#include "../include/robot2077_ui/loadWayPoint.h"
 
 
 /*****************************************************************************
@@ -65,10 +67,13 @@ public Q_SLOTS:
 
     void movemsg_send(float x, float y, float z);
 
+    void navigationmsg_send(WayPoint msg);
+
 private:
 	int init_argc;
 	char** init_argv;
   ros::Publisher movemsg_publisher;
+  ros::Publisher navigation_publisher;
   ros::Subscriber movemsg_subscriber;
   ros::Subscriber joy_subscriber;
   ros::Subscriber detectmsg_subscriber;

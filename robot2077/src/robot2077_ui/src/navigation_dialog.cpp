@@ -1,7 +1,9 @@
 #include "../include/robot2077_ui/navigation_dialog.h"
+#include "../include/robot2077_ui/loadWayPoint.h"
 #include "ui_navigation_dialog.h"
 #include "QMessageBox"
 #include "QFileDialog"
+#include "QCheckBox"
 // add by xq
 Navigation_Dialog::Navigation_Dialog(QWidget *parent) :
   QDialog(parent),
@@ -11,6 +13,7 @@ Navigation_Dialog::Navigation_Dialog(QWidget *parent) :
 
   mapfile = "";
   mapname = "";
+  xmlfile = "";
 
   render_panel_ = new rviz::RenderPanel();
   ui->mapdisplay_layout->addWidget(render_panel_);
@@ -87,7 +90,25 @@ void Navigation_Dialog::on_mapshow_btn_clicked()
     else
     {
         mapname = mapfile.mid(mapfile.lastIndexOf("/") + 1, mapfile.lastIndexOf(".") - mapfile.lastIndexOf("/") - 1);
-        QMessageBox::information(this, tr("ERROR"), mapname);
+
+        xmlfile = mapfile.left(mapfile.indexOf("/robot2077_slam")) + "/robot2077_navigation/waypoints/" + mapname + ".xml";
+        //QMessageBox::information(this, tr("ERROR"), xmlfile);
+        arr = LoadWaypointsFromFile(xmlfile.toStdString());
+        /*for (int i = 0;i< arr.size();i++)
+            QMessageBox::information(this, tr("ERROR"), QString::fromStdString(arr[i].name));*/
+
+        ui->target_list_widget->clear();
+        for (int i=0;i<arr.size();i++)
+        {
+            QListWidgetItem *item = new QListWidgetItem();
+            QString description = QString::fromStdString(arr[i].name);
+            QCheckBox *box = new QCheckBox(description);
+            box->setCheckable(true);
+            connect(box, SIGNAL(clicked(bool)), this, SLOT(getButtonText(bool)));
+            ui->target_list_widget->addItem(item);
+            ui->target_list_widget->setItemWidget(item, box);
+        }
+
         manager_->setFixedFrame("/map");
         manager_->removeAllDisplays();
 
@@ -128,5 +149,22 @@ void Navigation_Dialog::on_save_goal_btn_clicked()
     {
         QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui pointsave.launch map_name:="+ mapname + "'&";
         system(str.toLatin1().data());
+        QMessageBox::information(this, tr("提示"), tr("保存成功"));
+    }
+}
+
+void Navigation_Dialog::getButtonText(bool check)
+{
+    if (check == true)
+    {
+        QCheckBox *box = (QCheckBox *)(sender());
+        box->setChecked(false);
+            for (int i =0;i<arr.size();i++)
+            {
+                if (arr[i].name == box->text().toStdString())
+                    Q_EMIT navigationmsg_create(arr[i]);
+            }
+        QString str = "移动到目标" + box->text();
+        QMessageBox::information(this, tr("提示"), str);
     }
 }

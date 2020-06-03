@@ -22,7 +22,6 @@
     <!-- 基础移动 -->
 	    <!-- <include file="$(find robot2077_basic)/launch/robot_move.launch" /> -->
 	    <include file="$(find robot2077_basic)/launch/robot_move_with_avoidance.launch" />
-	    <node pkg="joy" name="joy" type="joy_node"/>
 
     <!-- 目标检测与抓取 -->
     	    <!-- 目标检测 -->

@@ -50,6 +50,7 @@ bool QNode::init() {
 	// Add your ros communications here.
   movemsg_subscriber = n.subscribe("/cmd_vel", 10, &QNode::movemsg_sub_callback, this);
   movemsg_publisher = n.advertise<robot2077_basic::Movemsg>("/robot2077/robot_move/vel", 10);
+  navigation_publisher = n.advertise<geometry_msgs::PoseStamped>("/move_base_simple/goal", 10);
   joy_subscriber = n.subscribe("/joy", 10, &QNode::joy_sub_callback, this);
   detectmsg_subscriber = n.subscribe("/robot2077/obj_detect/obj_count", 10, &QNode::detect_sub_callback, this);
 	start();
@@ -99,6 +100,28 @@ void QNode::movemsg_send(float x, float y, float z) {
   vel.z = z;
   movemsg_publisher.publish(vel);
   //ROS_INFO_STREAM("send!");
+}
+
+void QNode::navigationmsg_send(WayPoint msg) {
+    ros::Rate loop_rate(50);
+    int count = 5;
+    while(ros::ok()) {
+        geometry_msgs::PoseStamped goal;
+        goal.header.stamp = ros::Time::now();
+        goal.header.frame_id = "map";
+        goal.pose.position.x = msg.pos_x;
+        goal.pose.position.y = msg.pos_y;
+        goal.pose.position.z = msg.pos_z;
+        goal.pose.orientation.x = msg.ori_x;
+        goal.pose.orientation.y = msg.ori_y;
+        goal.pose.orientation.z = msg.ori_z;
+        goal.pose.orientation.w = msg.ori_w;
+        navigation_publisher.publish(goal);
+
+        ros::spinOnce();
+        loop_rate.sleep();
+        if (!count--) break;
+    }
 }
 
 void QNode::joy_sub_callback(const sensor_msgs::JoyConstPtr &msg)

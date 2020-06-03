@@ -22,6 +22,10 @@ public:
   explicit Navigation_Dialog(QWidget *parent = 0);
   ~Navigation_Dialog();
 
+Q_SIGNALS:
+
+  void navigationmsg_create(WayPoint msg);
+
 public Q_SLOTS:
   void on_back_btn_clicked();
 
@@ -35,12 +39,17 @@ public Q_SLOTS:
 
   void on_save_goal_btn_clicked();
 
+  void getButtonText(bool check);
+
 private:
   Ui::Navigation_Dialog *ui;
 
   QString mapfile;
 
   QString mapname;
+
+  QString xmlfile;
+  std::vector<WayPoint> arr;
 
   rviz::VisualizationManager *manager_;
   rviz::RenderPanel *render_panel_;

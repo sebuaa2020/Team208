@@ -98,7 +98,7 @@ void Detect_Grab_Dialog::on_detect_btn_clicked()
 void Detect_Grab_Dialog::get_detectmsg(int num)
 {
     ui->item_listwidget->clear();
-    for (int i=1;i<=num;i++)
+    for (int i=0;i<num;i++)
     {
         QListWidgetItem *item = new QListWidgetItem();
         QString description = "Object" + QString::number(i);
@@ -115,6 +115,7 @@ void Detect_Grab_Dialog::getButtonText(bool check)
     if (check == true)
     {
     QCheckBox *box = (QCheckBox *)(sender());
+    box->setChecked(false);
     QMessageBox::information(this, tr("!!!"), box->text());
     }
 }

@@ -214,5 +214,6 @@ void Buildmap_Dialog::on_map_save_clicked()
        std::stringstream ss;
        ss<<"gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash;"<< s1 << "'";
        system(ss.str().c_str());
+       QMessageBox::information(this, tr("提示"), tr("保存成功"));
    }
 }

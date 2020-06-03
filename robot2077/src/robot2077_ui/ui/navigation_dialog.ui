@@ -159,7 +159,7 @@
        </font>
       </property>
       <property name="text">
-       <string>显示地图</string>
+       <string>刷新显示</string>
       </property>
      </widget>
     </item>

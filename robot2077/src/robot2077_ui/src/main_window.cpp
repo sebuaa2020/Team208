@@ -13,10 +13,12 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QFileDialog>
+#include <QMetaType>
 #include <iostream>
 #include "../include/robot2077_ui/main_window.hpp"
 #include "../include/robot2077_ui/usercontrol_dialog.h"
 #include "../include/robot2077_ui/myviz.h"
+#include "../include/robot2077_ui/loadWayPoint.h"
 
 /*****************************************************************************
 ** Namespaces
@@ -35,6 +37,9 @@ MainWindow::MainWindow(int argc, char** argv, QWidget *parent)
 	, qnode(argc,argv)
 {
 	ui.setupUi(this); // Calling this incidentally connects all ui's triggers to on_...() callbacks in this class.
+
+    qRegisterMetaType<WayPoint>("WayPoint");
+
     QObject::connect(ui.actionAbout_Qt, SIGNAL(triggered(bool)), qApp, SLOT(aboutQt())); // qApp is a global variable for the application
 
     ReadSettings();
@@ -156,6 +161,7 @@ void MainWindow::on_buildmap_btn_clicked()
 void MainWindow::on_navigation_btn_clicked()
 {
   Navigation_Dialog* dlg = new Navigation_Dialog();
+  connect(dlg, SIGNAL(navigationmsg_create(WayPoint)), &qnode, SLOT(navigationmsg_send(WayPoint)));
   dlg->exec();
 }
 
