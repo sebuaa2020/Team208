@@ -1,6 +1,6 @@
 # Team208--Robot2077
 
-![show](media\show.jpg)
+![show](./media/show.jpg)
 
 ## 项目简介
 
