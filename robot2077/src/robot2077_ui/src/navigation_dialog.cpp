@@ -168,3 +168,38 @@ void Navigation_Dialog::getButtonText(bool check)
         QMessageBox::information(this, tr("提示"), str);
     }
 }
+
+void Navigation_Dialog::on_flush_btn_clicked()
+{
+    if (xmlfile =="")
+    {
+        QMessageBox::information(this, tr("ERROR"), tr("请先选择地图"));
+    }
+    else
+    {
+        arr = LoadWaypointsFromFile(xmlfile.toStdString());
+        /*for (int i = 0;i< arr.size();i++)
+            QMessageBox::information(this, tr("ERROR"), QString::fromStdString(arr[i].name));*/
+
+        ui->target_list_widget->clear();
+        for (int i=0;i<arr.size();i++)
+        {
+            QListWidgetItem *item = new QListWidgetItem();
+            QString description = QString::fromStdString(arr[i].name);
+            QCheckBox *box = new QCheckBox(description);
+            box->setCheckable(true);
+            connect(box, SIGNAL(clicked(bool)), this, SLOT(getButtonText(bool)));
+            ui->target_list_widget->addItem(item);
+            ui->target_list_widget->setItemWidget(item, box);
+        }
+    }
+}
+
+void Navigation_Dialog::on_single_btn_clicked()
+{
+    current_tool_ = tool_manager_->addTool("rviz/SetGoal");
+    rviz::Property *pro = current_tool_->getPropertyContainer();
+    pro->subProp("Topic")->setValue("move_base_simple/goal");
+    manager_->setFixedFrame("map");
+    tool_manager_->setCurrentTool(current_tool_);
+}

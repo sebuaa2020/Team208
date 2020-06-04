@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1103</width>
-    <height>730</height>
+    <width>920</width>
+    <height>684</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,37 +34,37 @@
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>70</y>
-     <width>1051</width>
-     <height>611</height>
+     <x>20</x>
+     <y>80</y>
+     <width>894</width>
+     <height>531</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="2">
-     <widget class="QWidget" name="speed_z_widget" native="true">
+    <item row="1" column="1">
+     <widget class="QWidget" name="speed_y_widget" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>1</horstretch>
+        <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>300</width>
-        <height>300</height>
+        <width>280</width>
+        <height>280</height>
        </size>
       </property>
       <property name="maximumSize">
        <size>
-        <width>300</width>
-        <height>300</height>
+        <width>280</width>
+        <height>280</height>
        </size>
       </property>
      </widget>
     </item>
-    <item row="2" column="2">
-     <widget class="QLabel" name="label_3">
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_5">
       <property name="maximumSize">
        <size>
         <width>16777215</width>
@@ -77,57 +77,7 @@
        </font>
       </property>
       <property name="text">
-       <string>转向速度(左转为正方向)</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QWidget" name="speed_x_widget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QWidget" name="speed_y_widget" native="true">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>300</width>
-        <height>300</height>
-       </size>
+       <string>控制状态</string>
       </property>
      </widget>
     </item>
@@ -161,6 +111,28 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="2">
+     <widget class="QWidget" name="speed_z_widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>280</width>
+        <height>280</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>280</height>
+       </size>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="1">
      <widget class="QLabel" name="label_2">
       <property name="maximumSize">
@@ -179,6 +151,24 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_3">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>转向速度(左转为正方向)</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="2">
      <layout class="QGridLayout" name="gridLayout_2">
       <property name="sizeConstraint">
@@ -194,7 +184,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
+          <width>0</width>
           <height>50</height>
          </size>
         </property>
@@ -254,7 +244,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
+          <width>0</width>
           <height>50</height>
          </size>
         </property>
@@ -278,7 +268,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
+          <width>0</width>
           <height>50</height>
          </size>
         </property>
@@ -302,7 +292,7 @@
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
+          <width>0</width>
           <height>50</height>
          </size>
         </property>
@@ -360,21 +350,31 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="label_5">
-      <property name="maximumSize">
+    <item row="1" column="0">
+     <widget class="QWidget" name="speed_x_widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
        <size>
-        <width>16777215</width>
-        <height>20</height>
+        <width>280</width>
+        <height>280</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
+      <property name="maximumSize">
+       <size>
+        <width>280</width>
+        <height>280</height>
+       </size>
       </property>
-      <property name="text">
-       <string>控制状态</string>
+      <property name="baseSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
       </property>
      </widget>
     </item>

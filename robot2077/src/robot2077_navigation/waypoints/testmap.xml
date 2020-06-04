@@ -59,4 +59,14 @@
         <Ori_z>0.896927</Ori_z>
         <Ori_w>-0.442179</Ori_w>
     </Waypoint>
+    <Waypoint>
+        <Name>7</Name>
+        <Pos_x>-0.0959554</Pos_x>
+        <Pos_y>-1.72662</Pos_y>
+        <Pos_z>0</Pos_z>
+        <Ori_x>0</Ori_x>
+        <Ori_y>0</Ori_y>
+        <Ori_z>0.708515</Ori_z>
+        <Ori_w>0.705695</Ori_w>
+    </Waypoint>
 </Waterplus>

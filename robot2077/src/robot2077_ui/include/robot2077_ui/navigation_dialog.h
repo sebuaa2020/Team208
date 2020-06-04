@@ -41,6 +41,10 @@ public Q_SLOTS:
 
   void getButtonText(bool check);
 
+  void on_flush_btn_clicked();
+
+  void on_single_btn_clicked();
+
 private:
   Ui::Navigation_Dialog *ui;
 

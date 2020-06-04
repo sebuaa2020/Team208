@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>956</width>
+    <width>1020</width>
     <height>652</height>
    </rect>
   </property>
@@ -46,9 +46,9 @@
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>310</y>
+     <y>380</y>
      <width>261</width>
-     <height>291</height>
+     <height>221</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -60,7 +60,7 @@
        </font>
       </property>
       <property name="text">
-       <string>目标点列表</string>
+       <string>路径点列表</string>
       </property>
      </widget>
     </item>
@@ -73,7 +73,7 @@
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>250</y>
+     <y>320</y>
      <width>261</width>
      <height>61</height>
     </rect>
@@ -87,9 +87,15 @@
         <height>50</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>166666</width>
+        <height>16777215</height>
+       </size>
+      </property>
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>10</pointsize>
        </font>
       </property>
       <property name="text">
@@ -107,11 +113,24 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>10</pointsize>
        </font>
       </property>
       <property name="text">
        <string>保存路径点</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="flush_btn">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>刷新路径点</string>
       </property>
      </widget>
     </item>
@@ -121,7 +140,7 @@
    <property name="geometry">
     <rect>
      <x>670</x>
-     <y>160</y>
+     <y>140</y>
      <width>261</width>
      <height>81</height>
     </rect>
@@ -159,7 +178,7 @@
        </font>
       </property>
       <property name="text">
-       <string>刷新显示</string>
+       <string>显示地图</string>
       </property>
      </widget>
     </item>
@@ -171,7 +190,7 @@
      <x>669</x>
      <y>99</y>
      <width>261</width>
-     <height>61</height>
+     <height>41</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -188,6 +207,60 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>290</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>路径点导航</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>230</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>单点导航</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="single_btn">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>240</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>选取目标点</string>
+   </property>
   </widget>
  </widget>
  <resources/>
