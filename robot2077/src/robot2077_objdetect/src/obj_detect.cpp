@@ -81,7 +81,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
 
     //pcl::PointCloud<pcl::PoingXYZ> save;
     //pcl::fromROSMsg(pc, save);
-    pcl::io::savePCDFile("/home/cauchymars/demo2_ws/src/robot2077_objdetect/test/save_2.pcd", pc);
+    //pcl::io::savePCDFile("/home/cauchymars/demo2_ws/src/robot2077_objdetect/test/save_2.pcd", pc);
     //printf("save finishes!\n");
     
     sensor_msgs::PointCloud2 footprint;
@@ -93,7 +93,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
     pcl_ros::transformPointCloud("/base_footprint", pc, footprint, *tf_listener);
     PointCloud cloud_src;
     pcl::fromROSMsg(footprint , cloud_src);
-    ROS_INFO("cloud_src size = %d",cloud_src.size()); 
+    ROS_INFO("cloud_src size = %d", (int)cloud_src.size()); 
 
     PointCloud_Ptr cloud_src_ptr = cloud_src.makeShared();
 
@@ -149,7 +149,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
         extract.setNegative (false);
         extract.filter (*plane);
         float plane_height = plane->points[0].z;
-        ROS_WARN("%d - plana: %d points. height =%.2f" ,i, plane->width * plane->height,plane_height);
+        ROS_WARN("%d - plana: %d points. height =%.2f" ,i, (int)plane->width * plane->height,plane_height);
         if(plane_height > 0.6 && plane_height < 1.5) 
         break;
 
