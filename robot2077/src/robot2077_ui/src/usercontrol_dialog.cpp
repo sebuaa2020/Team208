@@ -9,7 +9,7 @@ UserControl_Dialog::UserControl_Dialog(QWidget *parent) :
 
   ui->setupUi(this);
 
-  QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui usercontrol.launch '&";
+  QString str = "gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui usercontrol.launch '&";
   system(str.toLatin1().data());
 
   DashBoard_x = new CCtrlDashBoard(ui->speed_x_widget);
@@ -38,7 +38,7 @@ UserControl_Dialog::~UserControl_Dialog()
 
 void UserControl_Dialog::on_back_btn_clicked()
 {
-  QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; rosnode kill /joy '&";
+  QString str = "gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash; rosnode kill /joy '&";
   system(str.toLatin1().data());
   this->close();
 }

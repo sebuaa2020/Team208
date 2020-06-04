@@ -36,7 +36,7 @@ Navigation_Dialog::~Navigation_Dialog()
 
 void Navigation_Dialog::on_back_btn_clicked()
 {
-    QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; rosnode kill /navi_move_trans '&";
+    QString str = "gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash; rosnode kill /navi_move_trans '&";
     system(str.toLatin1().data());
     this->close();
 }
@@ -69,7 +69,7 @@ void Navigation_Dialog::on_mapselect_btn_clicked()
 {
     /*QFileDialog *fileDialog = new QFileDialog(this);
     fileDialog->setWindowTitle(tr("选择地图"));
-    fileDialog->setDirectory("~/GIT/Team208/robot2077/src/robot2077_slam/maps/");
+    fileDialog->setDirectory("~/Team208/robot2077/src/robot2077_slam/maps/");
     fileDialog->setNameFilter(tr("Map file(*.yaml)"));
     mapfile = fileDialog->getOpenFileName();*/
     mapfile = QFileDialog::getOpenFileName(this, tr("选择地图"), "..", "", 0);
@@ -134,7 +134,7 @@ void Navigation_Dialog::on_mapshow_btn_clicked()
           path_->subProp("Topic")->setValue("/move_base/NavfnROS/plan");
         }*/
 
-        QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui navigation.launch map_file:=" + mapfile + " waypoint_name:="+ mapname + "'&";
+        QString str = "gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui navigation.launch map_file:=" + mapfile + " waypoint_name:="+ mapname + "'&";
         system(str.toLatin1().data());
     }
 }
@@ -147,7 +147,7 @@ void Navigation_Dialog::on_save_goal_btn_clicked()
     }
     else
     {
-        QString str = "gnome-terminal -x bash -c 'source ~/GIT/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui pointsave.launch map_name:="+ mapname + "'&";
+        QString str = "gnome-terminal -x bash -c 'source ~/Team208/robot2077/devel/setup.bash; roslaunch robot2077_ui pointsave.launch map_name:="+ mapname + "'&";
         system(str.toLatin1().data());
         QMessageBox::information(this, tr("提示"), tr("保存成功"));
     }
