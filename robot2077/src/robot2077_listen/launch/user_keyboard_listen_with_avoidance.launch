@@ -1,0 +1,7 @@
+<launch>
+    <!--下面两个include控制是否开启自动避障-->
+    <!--include file="$(find robot2077_listen)/launch/include/user_listen.launch.xml"-->
+    <include file="$(find robot2077_listen)/launch/include/user_listen_with_avoidance.launch.xml"/>
+    <!--开启键盘监听-->
+    <node pkg="robot2077_listen" name="keyboard" type="keyboard_listen.py" output="screen" />
+</launch>

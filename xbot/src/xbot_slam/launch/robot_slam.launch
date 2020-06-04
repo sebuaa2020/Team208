@@ -1,0 +1,7 @@
+<!--整合机器人slam建图需要的节点的所有的launch-->
+<launch>
+  <!--启动基本世界-->
+  <include file="$(find xbot_sim)/launch/robot_spawn.launch" />
+  <!--启动建图程序gmapping-->
+  <include file="$(find xbot_slam)/launch/include/robot_gmapping.launch.xml"/>
+</launch>

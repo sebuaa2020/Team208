@@ -1,0 +1,8 @@
+<!--保存路径点-->
+<!--add by xq-->
+<launch>
+	<arg name="map_name" default="waypoints"/>
+  	<node pkg="waterplus_map_tools" type="wp_saver" name="wp_saver">
+                <param name="savefile" type="string" value="$(find robot2077_navigation)/waypoints/$(arg map_name).xml"/>
+  	</node>
+</launch>

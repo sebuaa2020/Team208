@@ -1,0 +1,33 @@
+<!--整合机器人导航需要的节点的所有的launch-->
+<!--add by fjh-->
+<launch>
+  <!--启动基本世界-->
+  <include file="$(find wpb_sim)/launch/wpb_simple.launch" />
+  <!--启动向我们自定义运动模块的转化节点-->
+  <node name="navi_move_trans" pkg="robot2077_navigation" type="navi_move_trans"/>
+  <!--启动自定义运动避障模块-->
+  <include file="$(find robot2077_basic)/launch/robot_move_with_avoidance.launch"/>
+  <!--启动rviz-->
+  <arg name="model" default="$(find wpb_sim)/urdf/wpb_home.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find robot2077_navigation)/rviz/nav.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <!--启动导航功能acml-->
+  <include file="$(find robot2077_navigation)/launch/navi.launch">
+    <!--使用的地图参数-->
+    <arg name="map_file" value="$(find robot2077_slam)/maps/new_navi.yaml"/>
+  </include>
+
+  <!-- Map tools  -->
+  <arg name="waypoint_name" default="waypoints"/>
+  <node pkg="waterplus_map_tools" type="wp_manager" name="wp_manager" output="screen">
+    <param name="load" type="string" value="$(find robot2077_navigation)/waypoints/$(arg waypoint_name).xml"/> 
+  </node>
+
+</launch>

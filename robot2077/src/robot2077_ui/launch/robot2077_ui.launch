@@ -1,0 +1,35 @@
+<launch>
+    <!-- add by xq -->
+
+    <!-- RVIZ显示 -->
+	<!--机器人模型-->
+	    <arg name="model" default="$(find wpb_sim)/urdf/wpb_home.urdf"/>
+	    <arg name="gui" default="false" />
+	    <arg name="scan_topic"  default="/robot2077/slam/scan" />
+	    <arg name="base_frame"  default="base_footprint"/>
+	    <arg name="odom_frame"  default="odom"/>
+
+	    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+	    <param name="use_gui" value="$(arg gui)"/>
+	    <param name="rvizconfig_slam" type="string" value="$(find robot2077_slam)/rviz/slam.rviz" />
+	    <param name="rvizconfig_detect" type="string" value="$(find wpb_sim)/rviz/sensor.rviz" />
+
+	    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+	        <rosparam command="load" file="$(find wpb_sim)/config/wpb_home.yaml" />
+	    </node>
+	    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+    <!-- 基础移动 -->
+	    <!-- <include file="$(find robot2077_basic)/launch/robot_move.launch" /> -->
+	    <include file="$(find robot2077_basic)/launch/robot_move_with_avoidance.launch" />
+
+    <!-- 目标检测与抓取 -->
+    	    <!-- 目标检测 -->
+		<node pkg="robot2077_objdetect" name="obj_detect" type="obj_detect" />
+
+    <!-- UI -->
+	    <param name="logo" type="string" value="$(find robot2077_ui)/resources/images/robot2077.png" />
+	    <node pkg="robot2077_ui" name="robot2077_ui" type="robot2077_ui" required="true" />
+  
+
+</launch>

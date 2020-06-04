@@ -1,0 +1,6 @@
+<launch>
+    <!-- add by xq -->
+
+            <node pkg="joy" name="joy" type="joy_node" required="true"/>
+
+</launch>

@@ -1,0 +1,10 @@
+<!--整合机器人slam建图需要的节点的所有的launch-->
+<!--add by fjh-->
+<launch>
+  <!--启动基本世界-->
+  <include file="$(find wpb_sim)/launch/wpb_simple.launch" />
+  <!--启动建图程序gmapping-->
+  <include file="$(find robot2077_slam)/launch/gmapping.launch"/>
+  <!--启动键盘控制模块-->
+  <include file="$(find robot2077_listen)/launch/user_keyboard_listen.launch"/>
+</launch>

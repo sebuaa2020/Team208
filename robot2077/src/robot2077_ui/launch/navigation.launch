@@ -1,0 +1,16 @@
+<!-- 启动导航功能-->
+<!--add by xq-->
+<launch>
+	<!--启动向我们自定义运动模块的转化节点-->
+	<arg name="map_file" default="$(find robot2077_slam)/maps/navi.yaml"/>
+		<node name="navi_move_trans" pkg="robot2077_navigation" type="navi_move_trans" required="true"/>
+	<!--启动导航功能acml-->
+	  	<include file="$(find robot2077_navigation)/launch/navi.launch">
+		<!--使用的地图参数-->
+	    		<arg name="map_file" value="$(arg map_file)"/>
+	  	</include>
+	<arg name="waypoint_name" default="waypoints"/>
+  	<node pkg="waterplus_map_tools" type="wp_manager" name="wp_manager" output="screen">
+    		<param name="load" type="string" value="$(find robot2077_navigation)/waypoints/$(arg waypoint_name).xml"/> 
+  	</node>
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+    <!--add by yzx-->
+    <!--启动基本用户监听运动模块-->
+    <include file="$(find robot2077_basic)/launch/robot_move.launch" />
+    <node pkg="robot2077_listen" name="user_listen" type="user_listen"/>
+
+</launch>

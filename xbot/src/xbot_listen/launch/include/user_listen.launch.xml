@@ -1,0 +1,6 @@
+<launch>
+
+    <node pkg="xbot_basic" name="robot_move" type="robot_move"/>
+    <node pkg="xbot_listen" name="user_listen" type="user_listen"/>
+
+</launch>
