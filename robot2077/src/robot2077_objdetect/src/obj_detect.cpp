@@ -3,6 +3,7 @@
 #include <pcl/point_types.h>
 #include <boost/foreach.hpp>
 #include <pcl/io/pcd_io.h>
+#include <pcl/pcl_exports.h>
 #include <pcl/sample_consensus/method_types.h>
 #include <pcl/sample_consensus/model_types.h>
 #include <pcl/segmentation/sac_segmentation.h>
@@ -80,14 +81,14 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
 
     //pcl::PointCloud<pcl::PoingXYZ> save;
     //pcl::fromROSMsg(pc, save);
-    //pcl::io::savePCDFile("/home/cauchymars/demo2_ws/src/robot2077_objdetect/test/save_1.pcd", pc);
+    pcl::io::savePCDFile("/home/cauchymars/demo2_ws/src/robot2077_objdetect/test/save_2.pcd", pc);
     //printf("save finishes!\n");
     
     sensor_msgs::PointCloud2 footprint;
     if (!tf_listener->waitForTransform("/base_footprint", pc.header.frame_id, pc.header.stamp, ros::Duration(5.0))) {
         return ;
     }
-    printf("step1.\n");
+    //printf("step1.\n");
 
     pcl_ros::transformPointCloud("/base_footprint", pc, footprint, *tf_listener);
     PointCloud cloud_src;
@@ -129,7 +130,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
 
     PointCloud_Ptr cloud_f (new PointCloud);
     int i = 0, nr_points = (int)(cloud_src_ptr->points.size());
-    printf("step2.\n");
+    //printf("step2.\n");
 
     while (cloud_src_ptr->points.size () > 0.03 * nr_points)
     {
@@ -158,7 +159,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
         cloud_src_ptr.swap (cloud_f);
         i++;
     }
-    printf("step3.\n");
+    //printf("step3.\n");
 
     if (planeIndices->indices.size() == 0)
         std::cout << "Could not find a plane in the scene." << std::endl;
@@ -258,7 +259,7 @@ void pc2_callback(const sensor_msgs::PointCloud2& pc) {
         }
         else std::cout << "The chosen hull is not planar." << std::endl;
     }
-    printf("step4.\n");
+    //printf("step4.\n");
 
 }
 
@@ -360,6 +361,8 @@ void RemoveBoxes()
 int main(int argc, char** argv) {
     ros::init(argc, argv, "obj_detect");
     ROS_INFO("Object Detection starts.");
+
+    pcl::console::setVerbosityLevel(pcl::console::L_ALWAYS); // Turn down console output from PCL;
     
     tf_listener = new tf::TransformListener();
 
