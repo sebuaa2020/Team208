@@ -35,7 +35,7 @@ $ roslaunch robot2077_ui robot2077_ui.launch
   - `robot2077_ui/navigation_dialog.cpp`
   - `robot2077_ui/usercontrol_dialog.cpp`
 - 如`gazebo`加载的地图无法显示家具等物品，须修改`wpb_sim/worlds/navigation_change.world`文件中的相关贴图路径
-- 本项目使用demo稍后给出，敬请期待
+- 本项目演示视频[demo](https://bhpan.buaa.edu.cn/#/link/EAAAEF86DBD66048E0C5BA6A3F7BF2A6%20)，（链接截止时间为2020/07/03）
 
 ## 其他
 
